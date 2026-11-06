@@ -1,0 +1,55 @@
+/* MuseumListItem — Figma: MuseumList (node 227:2116) / tokens.css 변수만 사용 */
+
+/* Base */
+.museum-list-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--spacing-4);
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-sub); /* Figma는 --text-third(#A1A1A1)지만 대비 부족 → 프로젝트 규칙에 따라 --text-sub 사용 */
+  text-align: start;
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-base);
+}
+
+.museum-list-item__name {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-10);
+  min-width: 0;
+}
+
+.museum-list-item__icon {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.museum-list-item__icon-click {
+  display: none;
+}
+
+/* Click — 선택됨 / 누르는 중 / 마우스 올림 / 키보드 포커스 */
+.museum-list-item.is-selected,
+.museum-list-item:hover,
+.museum-list-item:active,
+.museum-list-item:focus-visible {
+  color: var(--text-main);
+  background-color: var(--btn-main-hov);
+  border-bottom-color: var(--border-main);
+}
+
+.museum-list-item.is-selected .museum-list-item__icon-base,
+.museum-list-item:hover .museum-list-item__icon-base,
+.museum-list-item:active .museum-list-item__icon-base,
+.museum-list-item:focus-visible .museum-list-item__icon-base {
+  display: none;
+}
+
+.museum-list-item.is-selected .museum-list-item__icon-click,
+.museum-list-item:hover .museum-list-item__icon-click,
+.museum-list-item:active .museum-list-item__icon-click,
+.museum-list-item:focus-visible .museum-list-item__icon-click {
+  display: block;
+}

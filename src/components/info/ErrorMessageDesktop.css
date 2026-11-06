@@ -1,0 +1,15 @@
+/* ErrorMessageDesktop — Figma: Error 데스크탑 (node 489:12350) / tokens.css 변수만 사용 */
+.error-message-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-20);
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-main);
+  text-align: center;
+  background-color: var(--bg-info);
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--radius-sm);
+}

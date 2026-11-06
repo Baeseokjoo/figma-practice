@@ -1,0 +1,32 @@
+/* MuseumListMobile — Figma: Museum-List/Mobile (node 227:2713) / tokens.css 변수만 사용 */
+.museum-list-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10); /* Figma: 10px (변수 미연결) → 같은 값 토큰 */
+}
+
+.museum-list-mobile__list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 선택한 분관 소개 — 사진 · 이름·주소 · 자세히 보기 */
+.museum-list-mobile__panel {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-10);
+}
+
+/* 사진 — Figma 328×246 비율, 너비는 부모에 맞춤 */
+.museum-list-mobile__image {
+  width: 100%;
+  aspect-ratio: 328 / 246;
+  overflow: hidden;
+}
+
+.museum-list-mobile__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

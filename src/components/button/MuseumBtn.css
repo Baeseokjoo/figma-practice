@@ -1,0 +1,33 @@
+/* MuseumBtn — Figma: Museum-BTN (node 468:8406) / tokens.css 변수만 사용 */
+
+/* Base — 볼록한 알약 */
+.museum-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8);
+  font: var(--font-footer-sub); /* Figma: Footer/Sub */
+  color: var(--text-main);
+  white-space: nowrap;
+  background-color: var(--bg-base);
+  border-radius: var(--radius-lx);
+  box-shadow: var(--shadow-base); /* Figma: Base */
+}
+
+/* 누를 수 있는 영역을 위아래 4px씩 넓혀 44px 이상 확보 (겉모습은 그대로) */
+.museum-btn::after {
+  content: '';
+  position: absolute;
+  inset-block: calc(var(--spacing-4) * -1);
+  inset-inline: 0;
+}
+
+/* HOV — 회색 + 눌린 모양 (선택됨 / 마우스 올림 / 누르는 중 / 키보드 포커스) */
+.museum-btn.is-selected,
+.museum-btn:hover,
+.museum-btn:active,
+.museum-btn:focus-visible {
+  background-color: var(--btn-main-hov);
+  box-shadow: var(--shadow-hov); /* Figma: HOV */
+}

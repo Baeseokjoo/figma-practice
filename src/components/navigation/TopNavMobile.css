@@ -1,0 +1,28 @@
+/* TopNavMobile — Figma: TOP-NAV/Mobile (node 227:2101) / tokens.css 변수만 사용 */
+.top-nav-mobile {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--spacing-10) var(--spacing-16);
+  border-bottom: 1px solid var(--border-main);
+}
+
+.top-nav-mobile__title {
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+  font: var(--font-nav-main); /* Figma: NAV/Main */
+}
+
+.top-nav-mobile__title-ko {
+  color: var(--text-main);
+}
+
+.top-nav-mobile__title-en {
+  color: var(--text-sub);
+}
+
+.top-nav-mobile__menu {
+  display: flex;
+  flex-shrink: 0;
+}

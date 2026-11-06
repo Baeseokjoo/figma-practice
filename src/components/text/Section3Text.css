@@ -1,0 +1,16 @@
+/* Section3Text — Figma: Section3-Text (node 227:2895) / tokens.css 변수만 사용 */
+.section3-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.section3-text__title {
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-main);
+}
+
+.section3-text__sub {
+  font: var(--font-body-sub); /* Figma: Body/Sub */
+  color: var(--text-sub);
+}

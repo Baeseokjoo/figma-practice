@@ -1,0 +1,27 @@
+/* ResultMobile — Figma: Resalt/Mobile (node 284:4235) / tokens.css 변수만 사용 */
+.result-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  padding: var(--spacing-10);
+  font: var(--font-nav-main); /* Figma: NAV/Main */
+  color: var(--text-main); /* '총' 글자는 Figma에서 검정(#000) — 가장 가까운 토큰 사용 */
+}
+
+.result-mobile__condition {
+  display: flex;
+  flex-direction: column;
+}
+
+.result-mobile__count {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+}
+
+/* 결과 개수 — Figma: #002DE0 (변수 미연결) → 같은 값 토큰 --text-secondary */
+.result-mobile__number {
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-main);
+}

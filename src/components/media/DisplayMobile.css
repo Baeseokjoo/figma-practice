@@ -1,0 +1,58 @@
+/* DisplayMobile — Figma: Display/Mobile (node 227:633) / tokens.css 변수만 사용 */
+.display-mobile {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+/* 이미지 영역 — Figma 328×246 비율, 너비는 부모에 맞춤 */
+.display-mobile__image {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 328 / 246;
+  overflow: hidden;
+}
+
+.display-mobile__photo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 이전·다음·정보 버튼 — 뒤 배경을 흐리게 (Figma: Blur) */
+.display-mobile__btn {
+  position: absolute;
+  display: flex;
+  border-radius: var(--radius-lx);
+  -webkit-backdrop-filter: var(--effect-blur);
+  backdrop-filter: var(--effect-blur);
+}
+
+.display-mobile__btn--prev,
+.display-mobile__btn--next {
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.display-mobile__btn--prev {
+  left: 0;
+}
+
+.display-mobile__btn--next {
+  right: 0;
+}
+
+.display-mobile__btn--info {
+  top: 0;
+  right: 0;
+}
+
+/* 몇 번째 전시인지 — 스크린리더 전용 (화면에는 보이지 않음) */
+.display-mobile__count {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

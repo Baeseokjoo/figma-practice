@@ -1,0 +1,22 @@
+/* ErrorInfoDesktop — Figma: Error-Info/Desktop (node 490:12368) / tokens.css 변수만 사용 */
+.error-info-desktop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-20);
+  background-color: var(--bg-base);
+  border-radius: var(--radius-sm);
+}
+
+/* 버튼 줄 — 오른쪽 정렬 */
+.error-info-desktop__buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-10);
+}
+
+/* 바로가기 버튼 — 데스크탑에서는 글자 길이만큼만 (모바일은 꽉 채움) */
+.error-info-desktop .error-info-desktop__link {
+  width: auto;
+}

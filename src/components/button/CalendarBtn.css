@@ -1,0 +1,32 @@
+/* CalendarBtn — Figma: Calender-BTN (node 284:3921) / tokens.css 변수만 사용 */
+
+/* Base — 하늘색 볼록한 알약 */
+.calendar-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8) var(--spacing-20);
+  font: var(--font-btn-default); /* Figma: BTN/Default */
+  color: var(--text-main);
+  white-space: nowrap;
+  background-color: var(--btn-primary);
+  border-radius: var(--radius-lx);
+  box-shadow: var(--shadow-base); /* Figma: Base */
+}
+
+/* 누를 수 있는 영역을 위아래 2px씩 넓혀 44px 확보 (겉모습은 그대로) */
+.calendar-btn::after {
+  content: '';
+  position: absolute;
+  inset-block: calc(var(--spacing-2) * -1);
+  inset-inline: 0;
+}
+
+/* HovClick — 진한 하늘색 + 눌린 모양 (마우스 올림 / 누르는 중 / 키보드 포커스) */
+.calendar-btn:hover,
+.calendar-btn:active,
+.calendar-btn:focus-visible {
+  background-color: var(--btn-primary-hov);
+  box-shadow: var(--shadow-hov); /* Figma: HOV */
+}

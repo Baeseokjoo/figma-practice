@@ -1,0 +1,48 @@
+/* ResultCardMobile — Figma: ResaltCard/Mobile (node 284:4261) / tokens.css 변수만 사용 */
+.result-card-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-10);
+  padding: var(--spacing-10);
+  color: var(--text-main);
+  text-decoration: none;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-sm);
+}
+
+.result-card-mobile__title {
+  font: var(--font-heading-sub); /* Figma: Heading/Sub */
+  color: var(--text-main);
+}
+
+/* 시간·장소 배지 (간격 10px: Figma 변수 미연결 → 같은 값 토큰) */
+.result-card-mobile__info {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-10);
+}
+
+.result-card-mobile__bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--spacing-10);
+  width: 100%;
+}
+
+.result-card-mobile__sub {
+  font: var(--font-card-sub); /* Figma: Card/Sub */
+  color: var(--text-main);
+}
+
+.result-card-mobile__icon {
+  flex-shrink: 0;
+}
+
+/* 링크 카드에 마우스를 올리면 테두리를 진하게 (Figma에 Hover 상태 없음) */
+a.result-card-mobile:hover {
+  border-color: var(--border-main);
+}

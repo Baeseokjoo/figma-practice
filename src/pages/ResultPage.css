@@ -1,0 +1,98 @@
+/* ResultPage — Figma: Mobile-Result (365:1204) / Desktop-Resalt (468:8436) / tokens.css 변수만 사용 */
+
+/* ---------- Mobile (기본) ---------- */
+.result-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: var(--page-max-mobile);
+  margin-inline: auto;
+  background-color: var(--bg-base);
+}
+
+/* Result — 위아래 20 / 좌우 16, 간격 10 */
+.result-page__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+  padding: var(--spacing-20) var(--spacing-16);
+}
+
+.result-page__cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+}
+
+/* 화면 제목 — 스크린리더 전용 (모바일은 상단바 제목이 따로 있음) */
+.result-page__hidden-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* MainPage-BTN — 위아래 20 / 좌우 16, 버튼은 가로로 꽉 채움 */
+.result-page__home {
+  padding: var(--spacing-20) var(--spacing-16);
+}
+
+.result-page__home .mainpage-btn {
+  width: 100%;
+}
+
+/* Userflow (데스크탑) — 전시해설 > 일정찾기 > 검색결과 */
+.result-page__flow {
+  padding: var(--spacing-10) var(--spacing-16);
+  border-bottom: 1px solid var(--border-base);
+}
+
+.result-page__flow ol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--spacing-10);
+  font: var(--font-body-sub); /* Figma: Body/Sub */
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.result-page__flow-parent,
+.result-page__flow-parent a {
+  color: var(--text-sub);
+}
+
+.result-page__flow-parent a {
+  text-decoration: none;
+}
+
+.result-page__flow-parent a:hover {
+  text-decoration: underline;
+}
+
+.result-page__flow-current {
+  font: var(--font-body-main); /* Figma: Body/Main */
+}
+
+/* ---------- Desktop (1024px 이상) — Figma Desktop-Resalt ---------- */
+@media (min-width: 1024px) {
+  .result-page {
+    max-width: var(--page-max);
+  }
+
+  /* 결과 요약은 왼쪽에 붙음 (Figma Resalt 611px, 왼쪽 정렬) */
+  .result-page__list > .result {
+    align-self: flex-start;
+  }
+
+  /* 결과 표 — 줄 사이 간격 없이 붙음 */
+  .result-page__cards {
+    gap: 0;
+  }
+
+  /* 메인화면 버튼 — 데스크탑 시안에는 없음 */
+  .result-page__home {
+    display: none;
+  }
+}

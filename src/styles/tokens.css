@@ -1,0 +1,233 @@
+/* ==========================================================================
+ * Design Tokens — Figma 「공공기관 개선」(iICtp4r7wLJJ0eTOV8Xf9c) 에서 추출
+ *
+ * - 이름: Figma 이름을 영문 kebab-case로 변환 (오타 정정: Boder→border, LineHight→line-height,
+ *   Defalt→default, Categori→category, Foam→form)
+ * - 단위: 1rem = 16px. rem = Figma px ÷ 16 (정확히 나누어떨어지는 값, 반올림 없음)
+ *   그림자·블러·알약형 라운드처럼 레이아웃 크기가 아닌 값은 Figma px 그대로 둠
+ * - 반응형: Figma 「MODE」 컬렉션(Mobile / Desktop)을 따라 1024px 이상에서 값 전환
+ * ========================================================================== */
+
+:root {
+  /* ------------------------------------------------------------------------
+   * 1. Color — Primitives  (Figma: Primitives › Color/*)
+   * ---------------------------------------------------------------------- */
+  --color-white-900: rgb(255 255 255);        /* #FFFFFF */
+  --color-white-100: rgb(255 255 255 / 0.5);  /* #FFFFFF 50% */
+  --color-grey-900: rgb(21 21 21);            /* #151515 */
+  --color-grey-500: rgb(92 92 92);            /* #5C5C5C */
+  --color-grey-400: rgb(161 161 161);         /* #A1A1A1 */
+  --color-grey-300: rgb(0 0 0 / 0.25);        /* #000000 25% */
+  --color-grey-200: rgb(192 192 192 / 0.5);   /* #C0C0C0 50% */
+  --color-grey-100: rgb(235 235 235);         /* #EBEBEB */
+  --color-red-500: rgb(221 0 0);              /* #DD0000 */
+  --color-red-300: rgb(255 125 127);          /* #FF7D7F */
+  --color-red-100: rgb(255 223 224);          /* #FFDFE0 */
+  --color-blue-500: rgb(0 45 224);            /* #002DE0 */
+  --color-blue-300: rgb(0 170 255);           /* #00AAFF */
+  --color-blue-100: rgb(156 222 255);         /* #9CDEFF */
+
+  /* ------------------------------------------------------------------------
+   * 2. Color — Semantic  (Figma: Color › *)  ← 컴포넌트에서는 이 토큰을 사용
+   * ---------------------------------------------------------------------- */
+  --text-main: var(--color-grey-900);
+  --text-sub: var(--color-grey-500);
+  --text-third: var(--color-grey-400);
+  --text-primary: var(--color-red-500);
+  --text-secondary: var(--color-blue-500);
+
+  --bg-base: var(--color-white-900);
+  --bg-info: var(--color-red-100);
+  --bg-close: var(--color-grey-200);
+  --bg-blur: var(--color-white-100);
+  /* 결과 카드 정보 배지 (Figma: ResaltCard-Info — 기본 색이 직접 연결돼 있어 의미 토큰으로 정리) */
+  --bg-time: var(--color-blue-100);  /* Time 배지 — 해설 시간 */
+  --bg-place: var(--color-red-100);  /* Place 배지 — 장소 */
+  /* 어두운 배경 (Figma: Sub-Menu 데스크탑 — 배경에 Text/Main 변수가 연결돼 있어 의미 토큰으로 정리) */
+  --bg-dark: var(--color-grey-900);  /* 검은 배경 #151515 */
+
+  /* 어두운 배경 위 글자 (Figma: Sub-Menu 데스크탑 — 글자에 BG/Base 변수가 연결돼 있어 의미 토큰으로 정리) */
+  --text-inverse: var(--color-white-900); /* 흰 글자 */
+  --border-inverse: var(--color-white-900); /* 어두운 배경 위 흰 선 (HOV 밑줄) */
+
+  --border-base: var(--color-grey-400);
+  --border-main: var(--color-grey-900);
+  --border-primary: var(--color-blue-300);
+  --border-secondary: var(--color-red-300);
+
+  --btn-main: var(--color-white-900);
+  --btn-main-hov: var(--color-grey-100);
+  --btn-primary: var(--color-blue-100);
+  --btn-primary-hov: var(--color-blue-300);
+  --btn-click: var(--color-blue-100);
+
+  /* ------------------------------------------------------------------------
+   * 3. Font — Primitives  (Figma: Primitives › Text/*)
+   *    MODE 컬렉션과 이름이 겹쳐 primitive- 접두사를 붙임
+   * ---------------------------------------------------------------------- */
+  --font-family: 'Pretendard', sans-serif; /* 텍스트 스타일 전체 공통 패밀리 */
+
+  --primitive-text-size-42: 2.625rem;  /* 42px */
+  --primitive-text-size-36: 2.25rem;   /* 36px */
+  --primitive-text-size-28: 1.75rem;   /* 28px */
+  --primitive-text-size-24: 1.5rem;    /* 24px */
+  --primitive-text-size-20: 1.25rem;   /* 20px */
+  --primitive-text-size-16: 1rem;      /* 16px */
+  --primitive-text-size-14: 0.875rem;  /* 14px */
+  --primitive-text-size-12: 0.75rem;   /* 12px */
+
+  --primitive-text-weight-600: 600;
+  --primitive-text-weight-500: 500;
+  --primitive-text-weight-400: 400;
+
+  --primitive-text-line-height-63: 3.9375rem; /* 63px */
+  --primitive-text-line-height-54: 3.375rem;  /* 54px */
+  --primitive-text-line-height-42: 2.625rem;  /* 42px */
+  --primitive-text-line-height-36: 2.25rem;   /* 36px */
+  --primitive-text-line-height-30: 1.875rem;  /* 30px */
+  --primitive-text-line-height-24: 1.5rem;    /* 24px */
+  --primitive-text-line-height-21: 1.3125rem; /* 21px */
+  --primitive-text-line-height-18: 1.125rem;  /* 18px */
+
+  /* ------------------------------------------------------------------------
+   * 4. Font — Responsive  (Figma: MODE › Text/*, Mobile 값)
+   * ---------------------------------------------------------------------- */
+  --text-size-24: var(--primitive-text-size-24);
+  --text-size-20: var(--primitive-text-size-20);
+  --text-size-16: var(--primitive-text-size-16);
+  --text-size-14: var(--primitive-text-size-14);
+  --text-size-12: var(--primitive-text-size-12);
+
+  --text-weight-600: var(--primitive-text-weight-600);
+  --text-weight-500: var(--primitive-text-weight-500);
+  --text-weight-400: var(--primitive-text-weight-400);
+
+  --text-line-height-24: var(--primitive-text-line-height-36);
+  --text-line-height-20: var(--primitive-text-line-height-30);
+  --text-line-height-16: var(--primitive-text-line-height-24);
+  --text-line-height-14: var(--primitive-text-line-height-21);
+  --text-line-height-12: var(--primitive-text-line-height-18);
+
+  /* ------------------------------------------------------------------------
+   * 5. Font — Text Styles  (Figma 텍스트 스타일, CSS `font` 단축 속성)
+   *    사용: font: var(--font-heading-title);
+   *    letter-spacing 0%, text-case/decoration 없음 → 별도 토큰 없음
+   * ---------------------------------------------------------------------- */
+  --font-heading-title: var(--text-weight-600) var(--text-size-24) / var(--text-line-height-24) var(--font-family);
+  --font-heading-sub: var(--text-weight-500) var(--text-size-20) / var(--text-line-height-20) var(--font-family);
+  --font-nav-main: var(--text-weight-600) var(--text-size-16) / var(--text-line-height-16) var(--font-family);
+  --font-nav-sub: 400 var(--text-size-14) / var(--text-line-height-14) var(--font-family);   /* Figma: 굵기 변수 미연결(Regular) */
+  --font-nav-small: 400 var(--text-size-12) / var(--text-line-height-12) var(--font-family); /* Figma: 굵기 변수 미연결(Regular) */
+  --font-body-main: var(--text-weight-500) var(--text-size-16) / var(--text-line-height-16) var(--font-family);
+  --font-body-sub: var(--text-weight-400) var(--text-size-16) / var(--text-line-height-16) var(--font-family);
+  --font-card-title: var(--text-weight-600) var(--text-size-16) / var(--text-line-height-16) var(--font-family);
+  --font-card-category: var(--text-weight-500) var(--text-size-14) / var(--text-line-height-14) var(--font-family);
+  --font-card-sub: var(--text-weight-400) var(--text-size-14) / var(--text-line-height-14) var(--font-family);
+  --font-btn-default: var(--text-weight-500) var(--text-size-16) / var(--text-line-height-16) var(--font-family);
+  --font-footer-main: var(--text-weight-600) var(--text-size-16) / var(--text-line-height-16) var(--font-family);
+  --font-footer-sub: var(--text-weight-500) var(--text-size-14) / var(--text-line-height-14) var(--font-family);
+  --font-footer-small: var(--text-weight-400) var(--text-size-12) / var(--text-line-height-12) var(--font-family);
+
+  /* ------------------------------------------------------------------------
+   * 6. Spacing  (Figma: Primitives › Spacing/*, MODE › Spacing/*)
+   * ---------------------------------------------------------------------- */
+  --primitive-spacing-2: 0.125rem;  /* 2px */
+  --primitive-spacing-4: 0.25rem;   /* 4px */
+  --primitive-spacing-8: 0.5rem;    /* 8px */
+  --primitive-spacing-10: 0.625rem; /* 10px */
+  --primitive-spacing-16: 1rem;     /* 16px */
+  --primitive-spacing-20: 1.25rem;  /* 20px */
+  --primitive-spacing-30: 1.875rem; /* 30px */
+  --primitive-spacing-32: 2rem;     /* 32px */
+  --primitive-spacing-40: 2.5rem;   /* 40px */
+  --primitive-spacing-60: 3.75rem;  /* 60px */
+  --primitive-spacing-120: 7.5rem;  /* 120px */
+  --primitive-spacing-240: 15rem;   /* 240px */
+
+  --spacing-2: var(--primitive-spacing-2);
+  --spacing-4: var(--primitive-spacing-4);
+  --spacing-8: var(--primitive-spacing-8);
+  --spacing-10: var(--primitive-spacing-10);
+  --spacing-16: var(--primitive-spacing-16);
+  --spacing-20: var(--primitive-spacing-20);
+  --spacing-30: var(--primitive-spacing-30);
+  --spacing-32: var(--primitive-spacing-32);
+
+  /* Figma 변수 없음 — 시안에서 반복 사용된 값을 토큰화 (전체메뉴 목록 패딩 5px, 10회)
+   * Desktop 값이 정의되지 않아 모든 화면에서 동일 */
+  --spacing-5: 0.3125rem; /* 5px */
+
+  /* 참고: 테두리 두께 1px은 토큰 없이 컴포넌트에서 직접 `1px`로 작성한다. */
+
+  /* ------------------------------------------------------------------------
+   * Layout  (Figma 외 — PRD 6장 반응형 규칙)
+   * ---------------------------------------------------------------------- */
+  --content-max: 80rem; /* 데스크탑 콘텐츠 최대 너비 (임시, Figma 확정 전) */
+  /* 화면(페이지) 최대 너비 — 이보다 넓어지면 양옆은 여백 */
+  --page-max-mobile: 52.125rem; /* 834px — 모바일 구간(1024px 미만) 콘텐츠 최대 (사용자 지정) */
+  --page-max: 120rem;           /* 1920px — Figma 데스크탑 프레임 너비 (콘텐츠 1680 + 양옆 120) */
+  --touch-min: 2.75rem; /* 44px — 최소 터치 영역 */
+
+  /* ------------------------------------------------------------------------
+   * 7. Radius  (Figma: Primitives › Radius/*)
+   * ---------------------------------------------------------------------- */
+  --radius-sm: 0.25rem; /* 4px */
+  --radius-lx: 999px;   /* 알약형 — Figma 값 그대로 */
+
+  /* ------------------------------------------------------------------------
+   * 8. Shadow / Effect  (Figma 이펙트 스타일, px 그대로)
+   *    Figma 알파값 0.2 / 0.7 / 0.8 / 0.4 는 Figma 내부 소수 표현
+   *    (0.20000000298…)을 원래 입력값(20% 등)으로 표기한 것
+   * ---------------------------------------------------------------------- */
+  /* Base — 버튼 기본 (입체감) */
+  --shadow-base:
+    inset 0 2px 2px 0 rgb(255 255 255 / 0.8),
+    inset 0 -1px 2px 0 rgb(21 21 21 / 0.2),
+    inset 0 -4px 8px 0 rgb(21 21 21 / 0.25),
+    0 -1px 2px 0 rgb(255 255 255 / 0.7);
+  /* HOV — 버튼 호버/눌림 */
+  --shadow-hov:
+    inset 0 1px 2px 0 rgb(21 21 21 / 0.2),
+    inset 0 4px 8px 0 rgb(21 21 21 / 0.25),
+    0 1px 2px 0 rgb(255 255 255 / 0.7);
+  /* Foam(Form) — 입력 필드 (색상: Color/Grey/300 변수) */
+  --shadow-form:
+    inset 1px 1px 4px 0 var(--color-grey-300),
+    inset -1px -1px 4px 0 var(--color-grey-300);
+  /* Select — 드롭다운 (색상: Color/Grey/300 변수) */
+  --shadow-select: 0 1px 4px 0 var(--color-grey-300);
+  /* Popup — 오버레이 */
+  --shadow-popup:
+    0 2px 4px 0 rgb(21 21 21 / 0.4),
+    0 -2px 8px 0 rgb(21 21 21 / 0.4);
+  /* Blur — 배경 흐림 (Figma Background blur 10) */
+  --effect-blur: blur(10px);
+}
+
+/* ==========================================================================
+ * Desktop  (Figma MODE › Desktop) — 브레이크포인트는 px 표기
+ * ========================================================================== */
+@media (min-width: 1024px) {
+  :root {
+    --text-size-24: var(--primitive-text-size-42);
+    --text-size-20: var(--primitive-text-size-36);
+    --text-size-16: var(--primitive-text-size-28);
+    --text-size-14: var(--primitive-text-size-24);
+    --text-size-12: var(--primitive-text-size-16);
+
+    --text-line-height-24: var(--primitive-text-line-height-63);
+    --text-line-height-20: var(--primitive-text-line-height-54);
+    --text-line-height-16: var(--primitive-text-line-height-42);
+    --text-line-height-14: var(--primitive-text-line-height-36);
+    --text-line-height-12: var(--primitive-text-line-height-24);
+
+    --spacing-2: var(--primitive-spacing-4);
+    --spacing-4: var(--primitive-spacing-8);
+    --spacing-8: var(--primitive-spacing-16);
+    --spacing-10: var(--primitive-spacing-20);
+    --spacing-16: var(--primitive-spacing-120);
+    --spacing-20: var(--primitive-spacing-40);
+    --spacing-30: var(--primitive-spacing-60);
+    --spacing-32: var(--primitive-spacing-240);
+  }
+}

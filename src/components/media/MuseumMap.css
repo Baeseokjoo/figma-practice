@@ -1,0 +1,7 @@
+/* MuseumMap — Figma: Map (node 468:3838) / tokens.css 변수만 사용 */
+
+/* 부모 칸 너비에 맞춰 늘고 줄어듦 (Figma 551×488 비율 유지) */
+.museum-map img {
+  width: 100%;
+  height: auto;
+}

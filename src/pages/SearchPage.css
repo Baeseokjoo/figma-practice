@@ -1,0 +1,167 @@
+/* SearchPage — Figma: Mobile-Search (336:2265) / Mobile-SearchError (336:4198) / tokens.css 변수만 사용 */
+.search-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: var(--page-max-mobile);
+  margin-inline: auto;
+  background-color: var(--bg-base);
+}
+
+/* Userflow — 전시해설 > 일정찾기 */
+.search-page__flow {
+  padding: var(--spacing-10) var(--spacing-16);
+  border-bottom: 1px solid var(--border-base);
+}
+
+.search-page__flow ol {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-10);
+  font: var(--font-body-sub); /* Figma: Body/Sub */
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+.search-page__flow-parent {
+  color: var(--text-sub);
+}
+
+.search-page__flow-current {
+  font: var(--font-body-main); /* Figma: Body/Main */
+}
+
+/* 화면 제목 — 스크린리더 전용 (시안에는 보이는 제목 없음) */
+.search-page__hidden-title {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+/* Search-Form — 위아래 20 / 좌우 32, 간격 30 */
+.search-page__form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-30);
+  padding: var(--spacing-20) var(--spacing-32);
+}
+
+.search-page__field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+/* 분관 목록 (Figma: Select-List 묶음 — 진한 테두리 상자) */
+.search-page__select {
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  border: 1px solid var(--border-main);
+  border-radius: var(--radius-sm);
+}
+
+/* 버튼 줄 — 조회하기는 남는 너비를 모두 차지 */
+.search-page__buttons {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--spacing-10);
+}
+
+.search-page .search-page__search-btn {
+  flex: 1;
+}
+
+/* Research-info — 안내 상자 (위아래 20 / 좌우 16) */
+.search-page__error {
+  padding: var(--spacing-20) var(--spacing-16);
+}
+
+/* 달력 판 — 화면 아래에 붙어 올라옴, 뒤는 흐리게 */
+.search-page__sheet-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: var(--bg-blur);
+}
+
+.search-page__sheet {
+  width: 100%;
+  max-width: var(--page-max-mobile);
+  max-height: 100%;
+  overflow-y: auto;
+  box-shadow: var(--shadow-popup);
+}
+
+/* 전체 메뉴 — 화면 전체를 덮음 */
+.search-page__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow-y: auto;
+  background-color: var(--bg-base);
+}
+
+/* ---------- Desktop (1024px 이상) — Figma Desktop-Seach / ErrorPopup ---------- */
+@media (min-width: 1024px) {
+  .search-page {
+    max-width: var(--page-max);
+  }
+
+  /* 모바일 입력칸 묶음은 숨김 — 데스크탑은 분관 버튼 + 펼친 달력 */
+  .search-page__form {
+    display: none;
+  }
+
+  /* Museum-Select · Date-Selecet — 위아래 30(=60) / 좌우 32(=240), 간격 20(=40) */
+  .search-page__desk-section {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-20);
+    padding: var(--spacing-30) var(--spacing-32);
+  }
+
+  /* 관람예정일 제목과 달력 사이는 붙음 */
+  .search-page__desk-section--date {
+    gap: 0;
+  }
+
+  .search-page__desk-title {
+    font: var(--font-heading-sub); /* Figma: Heading/Sub */
+    color: var(--text-main);
+  }
+
+  /* 분관 알약 버튼 — 가운데 정렬, 줄 사이 8 / 칸 사이 4 */
+  .search-page__museum-btns {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-4);
+  }
+
+  /* 오류 안내 — 화면 가운데 팝업 (Figma ErrorPopup: 흰 상자 + 안쪽 여백 20(=40) + Popup 그림자) */
+  .search-page__error {
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: var(--spacing-16);
+    background-color: var(--bg-blur);
+  }
+
+  .search-page__error-box {
+    max-width: 100%;
+    padding: var(--spacing-20);
+    background-color: var(--bg-base);
+    border-radius: var(--radius-sm);
+    box-shadow: var(--shadow-popup);
+  }
+}

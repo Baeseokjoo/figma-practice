@@ -1,0 +1,24 @@
+/* DisplayText — Figma: Dispaly-text (node 203:9033) / tokens.css 변수만 사용 */
+.display-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  min-width: 0;
+}
+
+.display-text__title {
+  width: 100%;
+  font: var(--font-heading-title); /* Figma: Heading/Title */
+  color: var(--text-main);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.display-text__sub {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-sub);
+}

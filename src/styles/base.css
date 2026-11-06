@@ -1,0 +1,62 @@
+/* ==========================================================================
+ * Base — 페이지 전체의 기본 글꼴·색상
+ * 색상·폰트는 tokens.css 변수만 사용 (값 직접 입력 금지)
+ * ========================================================================== */
+
+body {
+  font: var(--font-body-sub); /* Pretendard 400 / 본문 크기·행간 (데스크탑에서 자동 확대) */
+  color: var(--text-main);
+  background-color: var(--bg-base);
+}
+
+/* 제목 — Figma 텍스트 스타일 Heading/Title, Heading/Sub */
+h1 {
+  font: var(--font-heading-title);
+}
+
+h2 {
+  font: var(--font-heading-sub);
+}
+
+h3,
+h4,
+h5,
+h6 {
+  font: var(--font-body-main);
+}
+
+/* 링크 — 색상만으로 구분하지 않도록 밑줄 유지 */
+a {
+  color: var(--text-secondary);
+  text-decoration: underline;
+}
+
+a:hover {
+  color: var(--text-main);
+}
+
+/* 반응형 세트용 — 모바일·데스크탑 컴포넌트 중 화면 너비에 맞는 하나만 보이게 함
+ * (숨겨진 쪽은 화면·스크린리더 모두에서 빠짐. display: contents = 감싸는 상자 없이 안쪽만 배치) */
+.show-mobile {
+  display: contents;
+}
+
+.show-desktop {
+  display: none;
+}
+
+@media (min-width: 1024px) {
+  .show-mobile {
+    display: none;
+  }
+
+  .show-desktop {
+    display: contents;
+  }
+}
+
+/* 키보드 포커스링 — 3px 이상, 선명한 색 (KWCAG 2.2) */
+:focus-visible {
+  outline: 3px solid var(--border-main);
+  outline-offset: var(--spacing-2);
+}

@@ -1,0 +1,8 @@
+/* CalendarSourceDesktop — Figma: Calender-Source 데스크탑 (node 473:8975) / tokens.css 변수만 사용 */
+
+/* 칸 크기 — 달력 한 칸 너비를 꽉 채우고, Figma 188×88 비율 유지 */
+.calendar-source.calendar-source-desktop {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 188 / 88;
+}

@@ -1,0 +1,5 @@
+/* CalendarBtnDesktop — Figma: Calender-BTN 데스크탑 (node 480:11443) / tokens.css 변수만 사용 */
+.calendar-btn.calendar-btn-desktop {
+  font: var(--font-footer-sub); /* Figma: Footer/Sub */
+  color: var(--text-main); /* Figma는 검정(#000) — 가장 가까운 토큰 --text-main 사용 */
+}

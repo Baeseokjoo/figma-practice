@@ -1,0 +1,42 @@
+/* MuseumListDesktop — Figma: Museum-List/Desktop (node 468:4551) / tokens.css 변수만 사용 */
+
+/* 목록 | 지도 | 소개 — Figma 1680px 기준 칸 너비(509 : 551 : 600) 비율 그대로 늘고 줄어듦 */
+.museum-list-desktop {
+  display: grid;
+  grid-template-columns: minmax(0, 509fr) minmax(0, 551fr) minmax(0, 600fr);
+  align-items: stretch;
+  gap: var(--spacing-20);
+}
+
+.museum-list-desktop__list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 소개 칸 — 사진은 위, 이름·주소·자세히 보기는 아래 끝 */
+.museum-list-desktop__place {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--spacing-10);
+}
+
+.museum-list-desktop__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-10);
+}
+
+/* 사진 — Figma 600×297 비율 */
+.museum-list-desktop__image {
+  width: 100%;
+  aspect-ratio: 600 / 297;
+  overflow: hidden;
+}
+
+.museum-list-desktop__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

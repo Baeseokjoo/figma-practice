@@ -1,0 +1,27 @@
+/* NewsTextDesktop — Figma: News-Text/Desktop (node 468:7881) / tokens.css 변수만 사용 */
+.news-text-desktop {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-20);
+  padding: var(--spacing-10) var(--spacing-4);
+  border-top: 1px solid var(--border-base);
+}
+
+/* 제목 — 남는 너비를 모두 차지 */
+.news-text-desktop .news-text-desktop__title {
+  flex: 1;
+  min-width: 0;
+}
+
+.news-text-desktop__category,
+.news-text-desktop__date {
+  flex-shrink: 0;
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-main); /* Figma는 검정(#000) — 가장 가까운 토큰 --text-main 사용 */
+  white-space: nowrap;
+}
+
+/* 분류 칸 너비 300px (레이아웃 너비 — 토큰 없음) */
+.news-text-desktop__category {
+  width: 18.75rem;
+}

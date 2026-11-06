@@ -1,0 +1,27 @@
+/* DetailCardMobile — Figma: 상세페이지Card (node 284:4332) / tokens.css 변수만 사용 */
+.detail-card-mobile {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+}
+
+/* CardImage를 상세용으로 조정 — Figma: 328×246 비율, 이미지 전체가 보이게(contain) */
+.detail-card-mobile .detail-card-mobile__image {
+  aspect-ratio: 328 / 246;
+}
+
+.detail-card-mobile .detail-card-mobile__image .card-image__img {
+  object-fit: contain;
+}
+
+/* 공유하기 버튼 — 이미지 오른쪽 위 */
+.detail-card-mobile__share {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: var(--spacing-4);
+}

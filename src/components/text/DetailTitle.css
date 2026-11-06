@@ -1,0 +1,5 @@
+/* DetailTitle — Figma: 상세페이지Title (node 284:4328) / tokens.css 변수만 사용 */
+.detail-title {
+  font: var(--font-heading-title); /* Figma: Heading/Title */
+  color: var(--text-main); /* Figma는 검정(#000) — 가장 가까운 토큰 --text-main 사용 */
+}

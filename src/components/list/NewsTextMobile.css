@@ -1,0 +1,20 @@
+/* NewsTextMobile — Figma: News-Text/Mobile (node 227:2903) / tokens.css 변수만 사용 */
+.news-text-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+  padding: var(--spacing-10) var(--spacing-4);
+  border-top: 1px solid var(--border-base);
+}
+
+.news-text-mobile__category,
+.news-text-mobile__date {
+  width: 100%;
+  font: var(--font-body-sub); /* Figma: Body/Sub */
+  color: var(--text-main);
+}
+
+.news-text-mobile__date {
+  text-align: right;
+}

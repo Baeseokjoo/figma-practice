@@ -1,0 +1,69 @@
+/* MuseumList — Figma: Museum-List 세트 (node 468:4759, Mobile / Desktop) / tokens.css 변수만 사용 */
+
+/* ---------- Mobile (기본) — 세로로 쌓임 ---------- */
+.museum-list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+}
+
+.museum-list__list {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 지도는 모바일 시안에 없음 */
+.museum-list__map {
+  display: none;
+}
+
+.museum-list__place {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+}
+
+.museum-list__info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-10);
+}
+
+/* 사진 — Figma Mobile 328×246 비율 */
+.museum-list__image {
+  width: 100%;
+  aspect-ratio: 328 / 246;
+  overflow: hidden;
+}
+
+.museum-list__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ---------- Desktop (1024px 이상) — 목록 | 지도 | 소개 ---------- */
+@media (min-width: 1024px) {
+  /* Figma 1680px 기준 칸 너비(목록 509 : 지도 551 : 소개 600) 비율 그대로 늘고 줄어듦 */
+  .museum-list {
+    display: grid;
+    grid-template-columns: minmax(0, 509fr) minmax(0, 551fr) minmax(0, 600fr);
+    gap: var(--spacing-20);
+    align-items: stretch;
+  }
+
+  .museum-list__map {
+    display: block;
+  }
+
+  /* 소개 칸 — 사진은 위, 이름·주소·자세히 보기는 아래 끝 */
+  .museum-list__place {
+    justify-content: space-between;
+  }
+
+  /* 사진 — Figma Desktop 600×297 비율 */
+  .museum-list__image {
+    aspect-ratio: 600 / 297;
+  }
+}

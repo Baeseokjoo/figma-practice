@@ -1,0 +1,240 @@
+/* MainPage — Figma: Mobile-Main (284:4341) / Desktop-Main (404:4388) / tokens.css 변수만 사용
+ * 모바일 구간(1024px 미만): 콘텐츠 최대 834px, 그보다 넓으면 양옆 여백
+ * 데스크탑(1024px 이상): 콘텐츠 최대 1920px(Figma 프레임) — 구역 좌우 여백 --spacing-16(=120px)이 자동 적용 */
+
+/* ---------- Mobile (기본) ---------- */
+.main-page {
+  max-width: var(--page-max-mobile);
+  margin-inline: auto;
+  background-color: var(--bg-base);
+}
+
+/* 전시 슬라이드 (Figma: Display — 위아래 20 / 좌우 16 → 데스크탑 40 / 120) */
+.main-page__display {
+  padding: var(--spacing-20) var(--spacing-16);
+}
+
+/* 구역 공통 (Figma: Section-01 ~ 04 — 위아래 20 / 좌우 16, 간격 20 → 데스크탑 40 / 120, 간격 40) */
+.main-page__section {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-20);
+  padding: var(--spacing-20) var(--spacing-16);
+}
+
+/* 전시와 프로그램 카드 — 모바일은 1열 */
+.main-page__cards {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-20);
+}
+
+/* 소장품과 미술연구 — 모바일은 사진 위, 글 아래 */
+.main-page__collection {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-20);
+}
+
+/* 소장품 사진 — Figma Card-Image 328×246 */
+.main-page .main-page__collection-image {
+  aspect-ratio: 328 / 246;
+}
+
+/* 소장품 글 4개 — 간격 30 (데스크탑 60) */
+.main-page__collection-text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-30);
+}
+
+/* 뉴스 — 모바일은 줄 사이 20 */
+.main-page__news {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-20);
+}
+
+/* ---------- Footer ---------- */
+.main-page__footer-main {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-20);
+  padding: var(--spacing-20) var(--spacing-16);
+  border-top: 1px solid var(--border-main);
+  border-bottom: 1px solid var(--border-main);
+}
+
+/* 미술관 이름 (Figma: MainTitle — NAV/Main) */
+.main-page__footer-title {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  padding-block: var(--spacing-10);
+  font: var(--font-nav-main);
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-base);
+}
+
+.main-page__footer-title p:last-child {
+  color: var(--text-sub);
+}
+
+/* 메뉴 글자 묶음 01 · 02 · 03 */
+.main-page__footer-group {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-8);
+  padding-block: var(--spacing-10);
+  border-bottom: 1px solid var(--border-base);
+}
+
+.main-page__footer-group--last {
+  border-bottom: 0;
+}
+
+.main-page__footer-sub {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+  padding: var(--spacing-20) var(--spacing-16);
+}
+
+.main-page__footer-sns {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-10);
+  padding-block: var(--spacing-10);
+}
+
+/* 주소·연락처, 정책 (Figma: Footer/Small) */
+.main-page__footer-info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  padding-block: var(--spacing-10);
+  font: var(--font-footer-small);
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-base);
+}
+
+.main-page__footer-logos {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-8);
+  padding-block: var(--spacing-10);
+}
+
+.main-page__footer-logos img {
+  width: 7.5rem; /* Figma 120px (레이아웃 너비 — 토큰 없음) */
+  height: auto;
+  object-fit: contain;
+}
+
+/* ---------- 전체 메뉴 — 화면 전체를 덮음 ---------- */
+.main-page__overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  overflow-y: auto;
+  background-color: var(--bg-base);
+}
+
+/* ---------- 전시 정보 창 — 흐린 배경 위 가운데 (Figma: Exhibition-Info 팝업) ---------- */
+.main-page__modal {
+  position: fixed;
+  inset: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-16);
+  background-color: var(--bg-blur);
+  -webkit-backdrop-filter: var(--effect-blur);
+  backdrop-filter: var(--effect-blur);
+}
+
+.main-page__modal-box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+  width: 100%;
+  max-width: 20.5rem; /* Figma 모바일 Exhibition-Info 328px */
+  max-height: 100%;
+  overflow-y: auto;
+  padding: var(--spacing-10);
+  background-color: var(--bg-base);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-popup);
+}
+
+.main-page__modal-close {
+  display: flex;
+  justify-content: flex-end;
+}
+
+/* ---------- Desktop (1024px 이상) — Figma Desktop-Main ---------- */
+@media (min-width: 1024px) {
+  .main-page {
+    max-width: var(--page-max);
+  }
+
+  /* 전시와 프로그램 — 4열, 카드는 Figma 폭(328px)까지, 사이는 균등 */
+  .main-page__cards {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 20.5rem));
+    justify-content: space-between;
+    align-items: start;
+  }
+
+  /* 소장품과 미술연구 — 사진(840) | 글(800) 2단 */
+  .main-page__collection {
+    display: grid;
+    grid-template-columns: minmax(0, 840fr) minmax(0, 800fr);
+    gap: var(--spacing-20);
+  }
+
+  .main-page .main-page__collection-image {
+    aspect-ratio: 840 / 558;
+  }
+
+  /* 뉴스 — 줄 사이 간격 없이 붙음 */
+  .main-page__news {
+    gap: 0;
+  }
+
+  /* 푸터 — 4단 (칸 사이 세로선) */
+  .main-page__footer-main,
+  .main-page__footer-sub {
+    flex-direction: row;
+    align-items: stretch;
+  }
+
+  .main-page__footer-main > *,
+  .main-page__footer-sub > * {
+    flex: 1;
+    min-width: 0;
+    border-bottom: 0;
+    border-right: 1px solid var(--border-base);
+  }
+
+  .main-page__footer-main > :last-child,
+  .main-page__footer-sub > :last-child {
+    border-right: 0;
+  }
+
+  .main-page__footer-title {
+    gap: 0;
+  }
+
+  .main-page__footer-sns {
+    align-items: flex-start;
+  }
+
+  /* 전시 정보 창 — Figma 데스크탑 Exhibition-Info 600px + 안쪽 여백 40 */
+  .main-page__modal-box {
+    max-width: 42.5rem; /* 680px */
+    padding: var(--spacing-20);
+  }
+}

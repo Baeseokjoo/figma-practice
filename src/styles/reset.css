@@ -1,0 +1,85 @@
+/* ==========================================================================
+ * Reset — 브라우저마다 다른 기본 스타일을 지워 같은 출발선에서 시작
+ * 색상·폰트 같은 디자인 값은 여기서 정하지 않음 (base.css 담당)
+ * ========================================================================== */
+
+/* 너비 계산에 padding·border를 포함 → 레이아웃 계산이 쉬워짐 */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* 기본 바깥 여백 제거 */
+* {
+  margin: 0;
+}
+
+/* html에는 font-size를 지정하지 않음 (1rem = 16px 유지, 사용자 글자 크기 설정 존중) */
+html {
+  -webkit-text-size-adjust: 100%; /* 모바일 가로 회전 시 글자 자동 확대 방지 */
+  text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  min-height: 100dvh;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 이미지·영상이 부모 너비를 넘지 않게 (320px 화면에서 가로 스크롤 방지) */
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+
+/* 입력창·버튼이 부모의 글꼴을 그대로 쓰도록 */
+input,
+button,
+textarea,
+select {
+  font: inherit;
+  color: inherit;
+}
+
+button {
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+/* 긴 단어(URL 등)가 화면 밖으로 넘치지 않게 */
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+
+/* 목록 점 제거는 role="list"를 단 목록에만 적용
+ * (Safari 스크린리더가 목록임을 계속 읽어주도록)
+ * :where()로 우선순위를 0으로 낮춤 → 컴포넌트 CSS의 padding이 항상 이김 */
+:where(ul[role='list'], ol[role='list']) {
+  list-style: none;
+  padding: 0;
+}
+
+/* 움직임 줄이기 설정을 켠 사용자에게는 애니메이션 최소화 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

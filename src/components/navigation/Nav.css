@@ -1,0 +1,36 @@
+/* Nav — Figma: NAV (node 227:3602) / tokens.css 변수만 사용 */
+
+/* 화면 전체를 채우는 메뉴 판 — 위: 메뉴 / 아래: 로그인·검색·ENG */
+.nav {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+  min-height: 100dvh;
+  background-color: var(--bg-base); /* Figma: white (변수 미연결) → 같은 값 토큰 */
+}
+
+.nav__top {
+  display: flex;
+  flex-direction: column;
+}
+
+/* 아래쪽 링크 묶음 (Figma: NAV-Bottom) */
+.nav__bottom {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+  padding: var(--spacing-10) var(--spacing-16);
+  font: var(--font-nav-sub); /* Figma: NAV/Sub */
+  color: var(--text-main); /* Figma는 검정(#000) — 가장 가까운 토큰 --text-main 사용 */
+  border-top: 1px solid var(--border-main);
+}
+
+.nav__link {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav__link:hover {
+  text-decoration: underline;
+}

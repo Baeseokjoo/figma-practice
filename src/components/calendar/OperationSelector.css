@@ -1,0 +1,32 @@
+/* OperationSelector — Figma: Operation Selector (node 473:11146) / tokens.css 변수만 사용 */
+.operation-selector {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: var(--spacing-4);
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-main);
+  white-space: nowrap;
+}
+
+/* 작은 네모 16×16 (크기·테두리 두께 2px: 토큰 없음) */
+.operation-selector__mark {
+  flex-shrink: 0;
+  width: 1rem;
+  height: 1rem;
+  background-color: var(--bg-base);
+  border-radius: var(--radius-sm);
+}
+
+.operation-selector__mark--open {
+  border: 2px solid var(--border-primary);
+}
+
+.operation-selector__mark--close {
+  border: 2px solid var(--border-secondary);
+}
+
+/* 선택불가 — 회색 칸 (Figma: Calender-Source1, 달력 범례) */
+.operation-selector__mark--not {
+  background-color: var(--bg-close);
+}

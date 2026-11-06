@@ -1,0 +1,19 @@
+/* NavTopPage — Figma: NAV/TOP-Page (node 284:4176) / tokens.css 변수만 사용 */
+.nav-top-page {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-10);
+  padding: var(--spacing-10) var(--spacing-16);
+  border-bottom: 1px solid var(--border-main);
+}
+
+.nav-top-page__back {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.nav-top-page__title {
+  min-width: 0;
+  font: var(--font-heading-title); /* Figma: Heading/Title */
+  color: var(--text-main);
+}

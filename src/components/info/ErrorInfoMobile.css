@@ -1,0 +1,7 @@
+/* ErrorInfoMobile — Figma: Error-Info/Mobile (node 491:15149) / tokens.css 변수만 사용 */
+.error-info-mobile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--spacing-10);
+}

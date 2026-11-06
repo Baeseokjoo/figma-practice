@@ -1,0 +1,27 @@
+/* ShareBtn — Figma: Share-BTN (node 284:4279) / tokens.css 변수만 사용 */
+.share-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8);
+  font: var(--font-btn-default); /* Figma: BTN/Default */
+  color: var(--text-main);
+  white-space: nowrap;
+  background-color: var(--bg-base);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-select); /* Figma: Select */
+}
+
+/* 누를 수 있는 영역을 위아래 2px씩 넓혀 44px 확보 (겉모습은 그대로) */
+.share-btn::after {
+  content: '';
+  position: absolute;
+  inset-block: calc(var(--spacing-2) * -1);
+  inset-inline: 0;
+}
+
+/* Figma에 HOV 상태가 없어 마우스를 올리면 글자에 밑줄만 표시 */
+.share-btn:hover {
+  text-decoration: underline;
+}

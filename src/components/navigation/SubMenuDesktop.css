@@ -1,0 +1,26 @@
+/* SubMenuDesktop — Figma: Sub-Menu 데스크탑 (node 491:13868) / tokens.css 변수만 사용 */
+
+/* Base — 검은 배경 + 흰 글자 (어두운 배경 전용 토큰) */
+.sub-menu-desktop {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8);
+  font: var(--font-nav-sub); /* Figma: NAV/Sub */
+  color: var(--text-inverse);
+  text-decoration: none;
+  white-space: nowrap;
+  background-color: var(--bg-dark);
+}
+
+/* 투명 선을 미리 두어 HOV 때 글자가 밀리지 않게 함 (선 두께 3px: 토큰 없음) */
+.sub-menu-desktop__text {
+  border-bottom: 3px solid transparent;
+}
+
+/* HOV — 글자 아래 흰 선 (마우스 올림 / 키보드 포커스) */
+a.sub-menu-desktop:hover .sub-menu-desktop__text,
+button.sub-menu-desktop:hover .sub-menu-desktop__text,
+.sub-menu-desktop:focus-visible .sub-menu-desktop__text {
+  border-bottom-color: var(--border-inverse);
+}

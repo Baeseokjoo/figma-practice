@@ -1,0 +1,18 @@
+/* SubMenuLink — Figma: SubMenu (node 404:5829) / tokens.css 변수만 사용 */
+.sub-menu-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-8);
+  padding: var(--spacing-8);
+  font: var(--font-nav-sub); /* Figma: NAV/Sub */
+  color: var(--text-sub);
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Figma에 HOV 상태가 없어 링크·버튼일 때 마우스를 올리면 밑줄만 표시 */
+a.sub-menu-link:hover,
+button.sub-menu-link:hover {
+  text-decoration: underline;
+}

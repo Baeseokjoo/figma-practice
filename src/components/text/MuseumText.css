@@ -1,0 +1,17 @@
+/* MuseumText — Figma: Museum-Text (node 397:4297) / tokens.css 변수만 사용 */
+.museum-text {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: var(--spacing-4);
+}
+
+.museum-text__title {
+  font: var(--font-heading-sub); /* Figma: Heading/Sub */
+  color: var(--text-main);
+}
+
+.museum-text__address {
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-sub);
+}

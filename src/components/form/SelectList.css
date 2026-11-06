@@ -1,0 +1,24 @@
+/* SelectList — Figma: Select-List (node 227:3787) / tokens.css 변수만 사용 */
+
+/* Base */
+.select-list {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: var(--spacing-10);
+  font: var(--font-body-sub); /* Figma: Body/Sub */
+  color: var(--text-main);
+  text-align: start;
+  white-space: nowrap;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-base);
+}
+
+/* Click — 선택됨 / 마우스 올림 / 누르는 중 / 키보드 포커스 */
+.select-list.is-selected,
+.select-list:hover,
+.select-list:active,
+.select-list:focus-visible {
+  background-color: var(--btn-main-hov);
+  box-shadow: var(--shadow-select); /* Figma: Select */
+}

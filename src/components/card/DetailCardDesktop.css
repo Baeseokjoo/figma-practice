@@ -1,0 +1,44 @@
+/* DetailCardDesktop — Figma: 상세페이지Card 데스크탑 (node 491:12792) / tokens.css 변수만 사용 */
+.detail-card-desktop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+}
+
+/* 포스터 | 공유 — Figma 너비 840 : 347 비율 그대로 늘고 줄어듦, 아래쪽 맞춤 */
+.detail-card-desktop__top {
+  display: grid;
+  grid-template-columns: minmax(0, 840fr) minmax(0, 347fr);
+  align-items: end;
+  gap: var(--spacing-20); /* Figma: 20px (변수 미연결) → 같은 값 토큰 */
+}
+
+/* CardImage를 상세용으로 조정 — Figma 840×558 비율, 이미지 전체가 보이게(contain) */
+.detail-card-desktop .detail-card-desktop__image {
+  aspect-ratio: 840 / 558;
+}
+
+.detail-card-desktop .detail-card-desktop__image .card-image__img {
+  object-fit: contain;
+}
+
+.detail-card-desktop__share {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+}
+
+.detail-card-desktop__share-title {
+  font: var(--font-heading-sub); /* Figma: Heading/Sub */
+  color: var(--text-main);
+}
+
+/* 공유 목록 — 칸 너비를 꽉 채움 */
+.detail-card-desktop .detail-card-desktop__share-list {
+  width: 100%;
+}
+
+/* 포스터 | 공유 — Figma 카드 너비 1207px(840 + 20 + 347)까지만 넓어짐 */
+.detail-card-desktop__top {
+  max-width: 75.4375rem; /* 1207px (레이아웃 너비 — 토큰 없음) */
+}

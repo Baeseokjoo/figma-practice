@@ -1,0 +1,24 @@
+/* ResultDesktop — Figma: Resalt/Desktop (node 491:12697) / tokens.css 변수만 사용 */
+.result-desktop {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--spacing-4);
+  padding: var(--spacing-10);
+  font: var(--font-heading-sub); /* Figma: Heading/Sub */
+  color: var(--text-main); /* '총' 글자는 Figma에서 검정(#000) — 가장 가까운 토큰 사용 */
+  text-align: center;
+}
+
+.result-desktop__count {
+  display: flex;
+  align-items: center;
+  gap: var(--spacing-4);
+}
+
+/* 결과 개수 — 파란 글자 + 밑줄 테두리 */
+.result-desktop__number {
+  color: var(--text-secondary);
+  border-bottom: 1px solid var(--border-main);
+}

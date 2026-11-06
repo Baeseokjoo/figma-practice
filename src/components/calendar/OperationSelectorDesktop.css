@@ -1,0 +1,7 @@
+/* OperationSelectorDesktop — Figma: Operation Selector 데스크탑 (node 473:11189) / tokens.css 변수만 사용 */
+
+/* 작은 네모 32×32 (크기: 토큰 없음) */
+.operation-selector-desktop .operation-selector__mark {
+  width: 2rem;
+  height: 2rem;
+}

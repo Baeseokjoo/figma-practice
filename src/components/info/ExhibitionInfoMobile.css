@@ -1,0 +1,42 @@
+/* ExhibitionInfoMobile — Figma: Exhibition-Info/Mobile (node 369:3389) / tokens.css 변수만 사용 */
+.exhibition-info-mobile {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--bg-base);
+  border-radius: var(--radius-sm);
+}
+
+.exhibition-info-mobile__title {
+  padding-block: var(--spacing-20);
+  font: var(--font-heading-title); /* Figma: Heading/Title */
+  color: var(--text-main);
+  text-align: center;
+}
+
+.exhibition-info-mobile__row {
+  display: grid;
+  grid-template-columns: 6.25rem 1fr; /* 항목 이름 칸 100px (레이아웃 너비 — 토큰 없음) */
+  gap: var(--spacing-10);
+}
+
+.exhibition-info-mobile__category,
+.exhibition-info-mobile__text {
+  display: flex;
+  align-items: center;
+  padding-block: var(--spacing-10);
+  border-bottom: 1px solid var(--border-base);
+}
+
+.exhibition-info-mobile__category {
+  justify-content: center;
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-main);
+  text-align: center;
+}
+
+.exhibition-info-mobile__text {
+  margin: 0;
+  font: var(--font-nav-sub); /* Figma: NAV/Sub */
+  color: var(--text-main);
+  white-space: pre-line; /* \n 줄바꿈 반영 */
+}

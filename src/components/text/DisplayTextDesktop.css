@@ -1,0 +1,20 @@
+/* DisplayTextDesktop — Figma: Dispaly-text 데스크탑 (node 404:6920) / tokens.css 변수만 사용 */
+.display-text-desktop {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.display-text-desktop__title {
+  font: var(--font-heading-title); /* Figma: Heading/Title */
+  color: var(--text-main);
+}
+
+/* 장소 · 기간 — 한 줄에 나란히 (좁으면 다음 줄로) */
+.display-text-desktop__sub {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--spacing-10);
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-sub);
+}

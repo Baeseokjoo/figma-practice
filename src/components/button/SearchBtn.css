@@ -1,0 +1,32 @@
+/* SearchBtn — Figma: Search-BTN (node 227:3751) / tokens.css 변수만 사용 */
+
+/* Base — 볼록한 알약 모양 */
+.search-btn {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-8);
+  font: var(--font-btn-default); /* Figma: BTN/Default */
+  color: var(--text-main);
+  white-space: nowrap;
+  background-color: var(--bg-base);
+  border-radius: var(--radius-lx);
+  box-shadow: var(--shadow-base); /* Figma: Base */
+}
+
+/* 누를 수 있는 영역을 위아래 2px씩 넓혀 44px 확보 (겉모습은 그대로) */
+.search-btn::after {
+  content: '';
+  position: absolute;
+  inset-block: calc(var(--spacing-2) * -1);
+  inset-inline: 0;
+}
+
+/* HOV — 눌린 모양 (마우스 올림 / 누르는 중 / 키보드 포커스) */
+.search-btn:hover,
+.search-btn:active,
+.search-btn:focus-visible {
+  background-color: var(--btn-main-hov);
+  box-shadow: var(--shadow-hov); /* Figma: HOV */
+}

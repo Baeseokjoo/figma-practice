@@ -1,0 +1,85 @@
+/* Form — Figma: Foam (node 227:3812) / tokens.css 변수만 사용 */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-8);
+}
+
+.form__label {
+  font: var(--font-heading-sub); /* Figma: Heading/Sub */
+  color: var(--text-main); /* Figma는 검정(#000) — 가장 가까운 토큰 --text-main 사용 */
+}
+
+/* 입력칸 상자 (미술관 버튼 / 날짜 입력칸 공통) — 안쪽으로 오목한 모양 */
+.form__field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: var(--spacing-10) var(--spacing-8);
+  font: var(--font-body-sub); /* Figma: Body/Sub */
+  color: var(--text-main);
+  text-align: start;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-form); /* Figma: Foam(Form) */
+}
+
+.form__value {
+  white-space: nowrap;
+}
+
+.form__icon {
+  flex-shrink: 0;
+}
+
+/* Date-Form — 날짜 입력칸 + 달력 버튼 */
+.form__row {
+  display: flex;
+  align-items: stretch;
+  gap: var(--spacing-8);
+}
+
+.form__row .form__field {
+  flex: 1;
+  min-width: 0;
+}
+
+.form__input {
+  flex: 1;
+  min-width: 0;
+  padding: 0;
+  font: var(--font-body-sub);
+  color: var(--text-main);
+  background: none;
+  border: 0;
+}
+
+/* 입력칸 안의 안내 글자(YYYY-MM-DD) — Figma와 같은 진한 색 (대비 확보) */
+.form__input::placeholder {
+  color: var(--text-main);
+  opacity: 1;
+}
+
+/* 입력칸에 커서가 들어가면 상자 전체에 포커스링 */
+.form__input:focus-visible {
+  outline: none;
+}
+
+.form__field:has(.form__input:focus-visible) {
+  outline: 3px solid var(--border-main);
+  outline-offset: var(--spacing-2);
+}
+
+.form__calendar {
+  display: flex;
+  flex-shrink: 0;
+  align-items: center;
+  justify-content: center;
+  aspect-ratio: 1;
+  background-color: var(--bg-base);
+  border: 1px solid var(--border-base);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-form); /* Figma: Foam(Form) */
+}

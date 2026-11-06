@@ -1,0 +1,7 @@
+/* Month — Figma: Month (node 284:4142) / tokens.css 변수만 사용 */
+.month {
+  font: var(--font-heading-title); /* Figma: Heading/Title */
+  color: var(--text-main);
+  text-align: center;
+  white-space: nowrap;
+}

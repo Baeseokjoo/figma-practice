@@ -1,0 +1,41 @@
+/* Card — Figma: Card (node 227:2860) / tokens.css 변수만 사용 */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+  color: var(--text-main);
+  text-decoration: none;
+}
+
+.card__text {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-2);
+  padding-inline: var(--spacing-4);
+}
+
+.card__title {
+  font: var(--font-card-title); /* Figma: Card/Title */
+  color: var(--text-main);
+}
+
+.card__category {
+  display: flex;
+  align-items: flex-end;
+  font: var(--font-card-category); /* Figma: Card/Category */
+  color: var(--text-main);
+}
+
+.card__category-icon {
+  flex-shrink: 0;
+}
+
+.card__sub {
+  font: var(--font-card-sub); /* Figma: Card/Sub */
+  color: var(--text-main);
+}
+
+.card__close {
+  font: var(--font-card-sub); /* Figma: Card/Sub */
+  color: var(--text-sub);
+}

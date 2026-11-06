@@ -1,0 +1,32 @@
+/* ==========================================================================
+ * ViewBtn — Figma: view-BTN (node 227:2195)
+ * 색상·간격·폰트는 tokens.css 변수만 사용
+ * ========================================================================== */
+
+/* Base */
+.view-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--spacing-4);
+  min-height: var(--touch-min); /* 최소 터치 영역 44px */
+  padding-block: var(--spacing-10);
+  font: var(--font-btn-default); /* Figma: BTN/Default */
+  color: var(--text-main);
+  text-decoration: none; /* 아래 테두리가 밑줄 역할 */
+  border-bottom: 1px solid var(--border-main);
+}
+
+.view-btn__label {
+  white-space: nowrap;
+}
+
+.view-btn__icon {
+  flex-shrink: 0;
+}
+
+/* HOV — 글자와 화살표 사이 간격이 넓어짐 (키보드 포커스 때도 같은 모양) */
+.view-btn:hover,
+.view-btn:focus-visible {
+  gap: var(--spacing-8);
+}

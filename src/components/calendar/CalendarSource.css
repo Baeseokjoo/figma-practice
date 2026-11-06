@@ -1,0 +1,48 @@
+/* CalendarSource — Figma: Calender-Source (node 284:3918) / tokens.css 변수만 사용 */
+
+/* Date — 일반 날짜 (44×44, 최소 터치 영역과 같은 크기) */
+.calendar-source {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--touch-min);
+  height: var(--touch-min);
+  font: var(--font-footer-sub); /* Figma: Footer/Sub */
+  color: var(--text-main);
+  text-align: center;
+  white-space: nowrap;
+  background-color: var(--bg-base);
+  border-radius: var(--radius-sm);
+}
+
+/* Not — 고를 수 없는 날 (비활성이라 연한 글자 허용) */
+.calendar-source--not {
+  color: var(--text-third);
+  background-color: var(--bg-close);
+}
+
+/* Open — 운영일 (두께 2px: 토큰 없음) */
+.calendar-source--open {
+  border: 2px solid var(--border-primary);
+}
+
+/* Close — 휴관일 */
+.calendar-source--close {
+  border: 2px solid var(--border-secondary);
+}
+
+/* Click / CloseClick — 선택됨 */
+.calendar-source.is-selected {
+  background-color: var(--btn-click);
+}
+
+/* 스크린리더 전용 글자 (화면에는 보이지 않음) */
+.calendar-source__status {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}

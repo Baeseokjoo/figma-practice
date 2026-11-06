@@ -1,0 +1,91 @@
+/* DetailPage — Figma: Mobile-DetailPage (365:1243) / Desktop-DetailPage (468:8534) / tokens.css 변수만 사용 */
+
+/* ---------- Mobile (기본) ---------- */
+.detail-page {
+  min-height: 100vh;
+  min-height: 100dvh;
+  max-width: var(--page-max-mobile);
+  margin-inline: auto;
+  background-color: var(--bg-base);
+}
+
+/* DetailPage — 위아래 20 / 좌우 16, 간격 10 */
+.detail-page__body {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+  padding: var(--spacing-20) var(--spacing-16);
+}
+
+/* 안내문 — 묶음 사이 10, 줄 사이 4 */
+.detail-page__info {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-10);
+  font: var(--font-body-sub); /* Figma: Body/Sub */
+  color: var(--text-main);
+}
+
+.detail-page__group {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-4);
+}
+
+/* 안내 줄 — 모바일 Figma에서 줄 앞에 공백 한 칸(' -시간…')이 있어 그만큼 들여쓰기 */
+.detail-page__group p {
+  padding-inline-start: var(--spacing-4);
+}
+
+/* ※ 제목 (Figma: Heading/Sub) */
+.detail-page__heading {
+  font: var(--font-heading-sub);
+  color: var(--text-main);
+}
+
+/* 강조 줄 — Figma 색 그대로 (파랑: 현장 접수 / 빨강: 개인정보·신분증 안내) */
+.detail-page__text--secondary {
+  color: var(--text-secondary);
+}
+
+.detail-page__text--primary {
+  color: var(--text-primary);
+}
+
+/* MainPage-BTN — 위아래 20 / 좌우 16, 버튼은 가로로 꽉 채움 */
+.detail-page__home {
+  padding: var(--spacing-20) var(--spacing-16);
+}
+
+.detail-page__home .mainpage-btn {
+  width: 100%;
+}
+
+/* Userflow (데스크탑) — 전시해설 상세정보 */
+.detail-page__flow {
+  padding: var(--spacing-10) var(--spacing-16);
+  font: var(--font-body-main); /* Figma: Body/Main */
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border-base);
+}
+
+/* ---------- Desktop (1024px 이상) — Figma Desktop-DetailPage ---------- */
+@media (min-width: 1024px) {
+  .detail-page {
+    max-width: var(--page-max);
+  }
+
+  /* 안내 줄 — 데스크탑 시안은 줄 사이 4px, 앞 공백 없음 */
+  .detail-page__group {
+    gap: var(--spacing-2);
+  }
+
+  .detail-page__group p {
+    padding-inline-start: 0;
+  }
+
+  /* 메인화면 버튼 — 데스크탑 시안에는 없음 */
+  .detail-page__home {
+    display: none;
+  }
+}

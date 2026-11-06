@@ -1,0 +1,61 @@
+/* TopNavDesktop — Figma: TOP-NAV/Desktop (node 404:5874) / tokens.css 변수만 사용 */
+.top-nav-desktop {
+  display: flex;
+  flex-direction: column;
+  padding: var(--spacing-20) var(--spacing-16);
+  border-bottom: 1px solid var(--border-main); /* Figma: Text/Main 변수가 연결됨 → 같은 값의 테두리 토큰 */
+}
+
+/* 윗줄 — 로그인 · 검색 · EN (오른쪽 정렬) */
+.top-nav-desktop__links {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-20);
+}
+
+/* 아랫줄 — 로고 | 주 메뉴 */
+.top-nav-desktop__main {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--spacing-20);
+}
+
+.top-nav-desktop__logo {
+  display: flex;
+  flex-shrink: 0;
+}
+
+.top-nav-desktop__menu {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  align-items: center;
+  gap: var(--spacing-20);
+}
+
+/* ---------- 하위 메뉴 줄 (Figma: NAV-Sub01 ~ 04) ----------
+ * 주 메뉴에 마우스를 올리거나, 키보드로 들어가거나, 눌렀을 때 메뉴바 바로 아래에 검은 줄로 나온다.
+ * 위치는 메뉴바 오른쪽 끝에 맞춤 (시안에 정확한 위치가 없어 주 메뉴 쪽에 붙임) */
+.top-nav-desktop__main {
+  position: relative;
+}
+
+.top-nav-desktop__sub {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  z-index: 5;
+  display: none;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  max-width: 100%;
+  background-color: var(--bg-dark);
+}
+
+.top-nav-desktop__item:hover .top-nav-desktop__sub,
+.top-nav-desktop__item:focus-within .top-nav-desktop__sub,
+.top-nav-desktop__item.is-open .top-nav-desktop__sub {
+  display: flex;
+}
