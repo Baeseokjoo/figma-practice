@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import TopNav from '../components/sets/TopNav.jsx'
 import Calendar from '../components/sets/Calendar.jsx'
 import ErrorInfo from '../components/sets/ErrorInfo.jsx'
@@ -9,6 +9,7 @@ import SelectList from '../components/form/SelectList.jsx'
 import SearchBtn from '../components/button/SearchBtn.jsx'
 import ResetBtn from '../components/button/ResetBtn.jsx'
 import MuseumBtn from '../components/button/MuseumBtn.jsx'
+import NoticePopup from '../components/info/NoticePopup.jsx'
 import { navMenus, desktopMenus } from './menu.js'
 import './SearchPage.css'
 
@@ -57,12 +58,14 @@ function nearestOpenDate(dateText) {
 
 function SearchPage() {
   const navigate = useNavigate()
+  const [params] = useSearchParams()
   const [menuOpen, setMenuOpen] = useState(false)
   const menuBtnRef = useRef(null)
 
-  const [branch, setBranch] = useState('')
+  // 검색결과에서 돌아오면 주소(/search?branch=…&date=…)에 담긴 조건을 그대로 채워 둔다
+  const [branch, setBranch] = useState(() => (branches.includes(params.get('branch')) ? params.get('branch') : ''))
   const [museumOpen, setMuseumOpen] = useState(false)
-  const [date, setDate] = useState('')
+  const [date, setDate] = useState(() => params.get('date') ?? '')
   const [calendarOpen, setCalendarOpen] = useState(false)
   const [error, setError] = useState(null) // { date, place, error }
 
@@ -71,12 +74,27 @@ function SearchPage() {
     menuBtnRef.current?.focus()
   }
 
+  /* 달력 판 — 아래에서 미끄러져 올라오고, 닫을 때는 아래로 미끄러져 내려간 뒤 사라짐
+   *   calendarClosing: 내려가는 중 (움직임이 끝나면 onAnimationEnd에서 실제로 닫음) */
+  const [calendarClosing, setCalendarClosing] = useState(false)
+  const openCalendar = () => {
+    setCalendarClosing(false)
+    setCalendarOpen(true)
+  }
+  const closeCalendar = () => setCalendarClosing(true)
+  const handleSheetAnimationEnd = (event) => {
+    if (!calendarClosing || event.target !== event.currentTarget) return
+    setCalendarOpen(false)
+    setCalendarClosing(false)
+  }
+
   // 달력 판이 열리면 판으로 포커스, ESC로 닫기 → 닫히면 달력 버튼으로 포커스 복귀
+  // preventScroll: 판이 아래에서 올라오는 중에 포커스 때문에 화면이 당겨지지 않도록
   const sheetRef = useRef(null)
   useEffect(() => {
     if (!calendarOpen) return undefined
-    sheetRef.current?.focus()
-    const onKey = (e) => e.key === 'Escape' && setCalendarOpen(false)
+    sheetRef.current?.focus({ preventScroll: true })
+    const onKey = (e) => e.key === 'Escape' && setCalendarClosing(true)
     window.addEventListener('keydown', onKey)
     return () => {
       window.removeEventListener('keydown', onKey)
@@ -84,9 +102,34 @@ function SearchPage() {
     }
   }, [calendarOpen])
 
+  // 분관 목록은 미술관 칸 위에 겹쳐 뜨므로 — ESC(→ 미술관 칸으로 포커스 복귀)나 목록 바깥 누르기로 닫기
+  const museumFieldRef = useRef(null)
+  useEffect(() => {
+    if (!museumOpen) return undefined
+    // 목록이 미술관 칸을 덮으므로 포커스를 목록 안(선택된 분관, 없으면 첫 분관)으로 옮긴다
+    const list = museumFieldRef.current?.querySelector('.search-page__select')
+    ;(list?.querySelector('.is-selected') ?? list?.querySelector('button'))?.focus()
+    const onKey = (e) => {
+      if (e.key !== 'Escape') return
+      setMuseumOpen(false)
+      museumFieldRef.current?.querySelector('.form__field')?.focus()
+    }
+    const onPointerDown = (e) => {
+      if (!museumFieldRef.current?.contains(e.target)) setMuseumOpen(false)
+    }
+    window.addEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
+  }, [museumOpen])
+
   const goResult = (dateText) => {
-    const query = new URLSearchParams({ branch, date: dateText })
-    navigate(`/result?${query.toString()}`)
+    const query = new URLSearchParams({ branch, date: dateText }).toString()
+    // 지금 주소에도 조건을 남겨 두면(replace), 브라우저 뒤로가기로 돌아와도 고른 내용이 그대로 보인다
+    navigate(`/search?${query}`, { replace: true })
+    navigate(`/result?${query}`)
   }
 
   // ESC로 오류 안내(데스크탑 팝업) 닫기
@@ -122,11 +165,30 @@ function SearchPage() {
     setError(null)
     setMuseumOpen(false)
     setCalendarOpen(false)
+    setCalendarClosing(false)
+    if (params.size > 0) navigate('/search', { replace: true }) // 주소에 남은 조건도 지움 (새로고침해도 빈 상태)
   }
 
+  // '가장 가까운 전시해설 일자 바로가기' — 고른 날짜 이후 운영일로 이동, 없으면 안내 팝업
+  const [noOpenDateNotice, setNoOpenDateNotice] = useState(false)
   const handleNearest = () => {
     const next = nearestOpenDate(error?.dateText ?? '')
     if (next) goResult(next)
+    else setNoOpenDateNotice(true)
+  }
+
+  // 안내 팝업의 '일정찾기' — 팝업을 닫고 조건(미술관·날짜·안내)을 모두 초기화한 처음 화면으로
+  // 포커스는 화면 맨 위로 올린 뒤 첫 입력(모바일: 미술관 칸 / 데스크탑: 첫 분관 버튼)으로 옮긴다
+  const startOver = () => {
+    setNoOpenDateNotice(false)
+    handleReset()
+    window.scrollTo(0, 0)
+    requestAnimationFrame(() => {
+      const first = [...document.querySelectorAll('.search-page .form__field, .search-page__museum-btns button')].find(
+        (el) => el.offsetParent !== null,
+      )
+      first?.focus({ preventScroll: true })
+    })
   }
 
   return (
@@ -184,14 +246,14 @@ function SearchPage() {
 
         {/* ---------- 모바일 — Search-Form ---------- */}
         <form className="search-page__form" onSubmit={handleSubmit}>
-          <div className="search-page__field">
+          <div className="search-page__field" ref={museumFieldRef}>
             <Form
               variant="museum"
               value={branch}
               expanded={museumOpen}
               onOpen={() => {
                 setMuseumOpen(!museumOpen)
-                setCalendarOpen(false)
+                if (calendarOpen) closeCalendar()
               }}
             />
             {museumOpen && (
@@ -205,6 +267,7 @@ function SearchPage() {
                         setBranch(name)
                         setMuseumOpen(false)
                         setError(null)
+                        museumFieldRef.current?.querySelector('.form__field')?.focus() // 닫힌 뒤 미술관 칸으로 포커스 복귀
                       }}
                     />
                   </li>
@@ -223,7 +286,8 @@ function SearchPage() {
               }}
               calendarOpen={calendarOpen}
               onCalendarClick={() => {
-                setCalendarOpen(!calendarOpen)
+                if (calendarOpen) closeCalendar()
+                else openCalendar()
                 setMuseumOpen(false)
               }}
             />
@@ -247,11 +311,12 @@ function SearchPage() {
 
       {/* 달력 — 화면 아래에서 올라오는 판 (Figma Calendar: 위쪽 모서리만 둥근 360px 판) */}
       {calendarOpen && (
-        <div className="search-page__sheet-backdrop" onClick={() => setCalendarOpen(false)}>
+        <div className="search-page__sheet-backdrop" onClick={closeCalendar}>
           <div
             ref={sheetRef}
             tabIndex={-1}
-            className="search-page__sheet"
+            className={`search-page__sheet ${calendarClosing ? 'search-page__sheet--closing' : ''}`.trim()}
+            onAnimationEnd={handleSheetAnimationEnd}
             role="dialog"
             aria-modal="true"
             aria-label="관람예정일 달력"
@@ -263,10 +328,20 @@ function SearchPage() {
                 setDate(`2026-10-${d.day.padStart(2, '0')}`)
                 setError(null)
               }}
-              onSubmit={() => setCalendarOpen(false)}
+              onSubmit={closeCalendar}
             />
           </div>
         </div>
+      )}
+
+      {/* 이후 운영일이 없을 때 안내 (NoticePopup) */}
+      {noOpenDateNotice && (
+        <NoticePopup
+          message="조회된 날짜 이후의 운영일정이 없습니다."
+          actionText="일정찾기"
+          onAction={startOver}
+          onClose={() => setNoOpenDateNotice(false)}
+        />
       )}
 
       {menuOpen && (

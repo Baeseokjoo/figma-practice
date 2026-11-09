@@ -1,0 +1,56 @@
+/* NoticePopup — 안내 팝업 (Figma 시안 없음) / tokens.css 변수만 사용
+ * 모양은 기존 팝업(데스크탑 ErrorPopup)과 맞춤: 흐린 배경 + 흰 상자 + Popup 그림자 + 작은 모서리
+ * 글자·간격 토큰은 데스크탑(1024px 이상)에서 자동으로 커진다 */
+
+/* 뒤 배경 — 화면 전체를 흐리게 덮음 (다른 팝업보다 위) */
+.notice-popup {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--spacing-16);
+  background-color: var(--bg-blur);
+  -webkit-backdrop-filter: var(--effect-blur);
+  backdrop-filter: var(--effect-blur);
+  animation: notice-popup-fade-in 0.2s linear;
+}
+
+/* 상자 — 문구 위 / 버튼 아래 (가로로 꽉 참) */
+.notice-popup__box {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-20);
+  width: 100%;
+  max-width: 20.5rem; /* 모바일 카드 너비 328px (레이아웃 너비 — 토큰 없음) */
+  padding: var(--spacing-20);
+  background-color: var(--bg-base);
+  border-radius: var(--radius-sm);
+  box-shadow: var(--shadow-popup);
+}
+
+.notice-popup__message {
+  font: var(--font-body-main); /* Body/Main */
+  color: var(--text-main);
+  text-align: center;
+  word-break: keep-all; /* 한글 단어 중간에서 줄이 끊기지 않게 */
+}
+
+/* 버튼 — 일정찾기 화면의 '조회하기'처럼 가로로 꽉 찬 알약 버튼 */
+.notice-popup .notice-popup__action {
+  width: 100%;
+}
+
+@keyframes notice-popup-fade-in {
+  from {
+    opacity: 0;
+  }
+}
+
+/* ---------- Desktop (1024px 이상) ---------- */
+@media (min-width: 1024px) {
+  .notice-popup__box {
+    max-width: 42.5rem; /* 680px — 데스크탑 전시 정보 창과 같은 너비 */
+  }
+}

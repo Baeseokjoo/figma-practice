@@ -5,11 +5,11 @@
   gap: var(--spacing-10);
 }
 
-/* 포스터 | 공유 — Figma 너비 840 : 347 비율 그대로 늘고 줄어듦, 아래쪽 맞춤 */
+/* 포스터 | 공유 — Figma 너비 840 : 347 비율 그대로 늘고 줄어듦, 위쪽 맞춤 (Figma 수정: 아래 → 위) */
 .detail-card-desktop__top {
   display: grid;
   grid-template-columns: minmax(0, 840fr) minmax(0, 347fr);
-  align-items: end;
+  align-items: start;
   gap: var(--spacing-20); /* Figma: 20px (변수 미연결) → 같은 값 토큰 */
 }
 
@@ -36,6 +36,37 @@
 /* 공유 목록 — 칸 너비를 꽉 채움 */
 .detail-card-desktop .detail-card-desktop__share-list {
   width: 100%;
+}
+
+/* ---------- 화면이 좁아지면 공유 영역 전체가 같은 비율로 줄어듦 ----------
+ * 칸(.detail-card-desktop__share) 너비를 기준(cqw: 칸 너비의 1%)으로 제목·아이콘·글자·여백을 줄이고,
+ * 시안 값보다 커지지는 않게 min()으로 막는다.
+ * 비율 기준은 Figma 칸 너비 347px에 약간 여유를 둔 360px (예: 글자 28px → 28 ÷ 360 × 100 = 7.778cqw)
+ * 줄 높이는 Figma와 같은 1.5배(28→42, 36→54)로 두어 글자와 함께 줄어듦 */
+.detail-card-desktop__share {
+  container-type: inline-size;
+}
+
+.detail-card-desktop .detail-card-desktop__share-title {
+  font-size: min(var(--text-size-20), 10cqw); /* Heading/Sub 36px */
+  line-height: 1.5;
+}
+
+.detail-card-desktop .detail-card-desktop__share-list {
+  justify-content: center; /* 항목 묶음을 상자 가운데로 — 눈으로 볼 때 좌우 여백이 같게 (Figma는 왼쪽 정렬) */
+  gap: min(var(--spacing-10), 5.556cqw); /* 20px */
+  padding: min(var(--spacing-10), 5.556cqw); /* 20px */
+}
+
+.detail-card-desktop .detail-card-desktop__share-list .share-list__item {
+  gap: min(var(--spacing-4), 2.222cqw);
+  font-size: min(var(--text-size-16), 7.778cqw); /* Body/Sub 28px */
+  line-height: 1.5;
+}
+
+.detail-card-desktop .detail-card-desktop__share-list .share-list__item img {
+  width: min(3.75rem, 16.667cqw); /* 아이콘 60px (이미지 크기 — 토큰 없음) */
+  height: auto;
 }
 
 /* 포스터 | 공유 — Figma 카드 너비 1207px(840 + 20 + 347)까지만 넓어짐 */

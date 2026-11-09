@@ -10,8 +10,9 @@
   white-space: nowrap;
 }
 
-/* HOV — 회색 글자 (키보드 포커스 때도 같은 모양) */
-a.footer-text:hover,
+/* HOV — 회색 글자 (키보드 포커스 때도 같은 모양)
+ * 아직 이동할 페이지가 없어 링크(href)가 없는 글자에도 마우스를 올리면 시안의 HOV 모양을 보여준다 */
+.footer-text:hover,
 a.footer-text:focus-visible {
   color: var(--text-sub);
 }

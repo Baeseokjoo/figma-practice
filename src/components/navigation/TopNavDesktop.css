@@ -22,22 +22,46 @@
   gap: var(--spacing-20);
 }
 
+/* ---------- 로고 + 주 메뉴를 항상 한 줄로 ----------
+ * Figma(1920px) 크기 그대로면 로고 196 + 간격 40 + 메뉴 5개(765) + 메뉴 간격 160 ≈ 1161px 가 필요해
+ * 1024~1400px 화면에서는 줄이 넘친다. 그래서 이 줄의 너비(cqw: 줄 너비의 1%)에 맞춰
+ * 글자·간격·로고를 같은 비율로 줄이고, 시안 값보다 커지지는 않게 min()으로 막는다.
+ * 비율 기준은 여유를 두어 1200px (예: 28px 글자 → 28 ÷ 1200 × 100 = 2.333cqw) */
+.top-nav-desktop__main {
+  container-type: inline-size;
+  gap: 0; /* cqw는 자기 자신이 아닌 안쪽 요소에서만 쓸 수 있어 로고–메뉴 간격은 nav에 둠 */
+}
+
+.top-nav-desktop__main > nav {
+  padding-inline-start: min(var(--spacing-20), 3.333cqw);
+}
+
 .top-nav-desktop__logo {
   display: flex;
   flex-shrink: 0;
 }
 
+.top-nav-desktop__logo img {
+  width: min(12.25rem, 16.333cqw); /* Figma 로고 196px (레이아웃 너비 — 토큰 없음) */
+  height: auto;
+}
+
 .top-nav-desktop__menu {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap; /* 줄바꿈 없이 항상 한 줄 */
   justify-content: flex-end;
   align-items: center;
-  gap: var(--spacing-20);
+  gap: min(var(--spacing-20), 3.333cqw);
+}
+
+.top-nav-desktop__menu .main-menu {
+  padding: min(var(--spacing-8), 1.333cqw);
+  font-size: min(var(--text-size-16), 2.333cqw); /* Figma NAV/Main 28px */
 }
 
 /* ---------- 하위 메뉴 줄 (Figma: NAV-Sub01 ~ 04) ----------
- * 주 메뉴에 마우스를 올리거나, 키보드로 들어가거나, 눌렀을 때 메뉴바 바로 아래에 검은 줄로 나온다.
- * 위치는 메뉴바 오른쪽 끝에 맞춤 (시안에 정확한 위치가 없어 주 메뉴 쪽에 붙임) */
+ * Figma 프로토타입: 주 메뉴를 눌렀을 때만 그 메뉴 바로 아래에 검은 줄로 나온다 (바깥 누르면 닫힘).
+ * 가로 위치(left)는 TopNavDesktop.jsx에서 계산 — 누른 메뉴 가운데, 오른쪽 끝을 넘으면 메뉴바 오른쪽 끝에 맞춤 */
 .top-nav-desktop__main {
   position: relative;
 }
@@ -45,17 +69,10 @@
 .top-nav-desktop__sub {
   position: absolute;
   top: 100%;
-  right: 0;
   z-index: 5;
-  display: none;
+  display: flex;
   flex-wrap: wrap;
-  justify-content: flex-end;
+  width: max-content;
   max-width: 100%;
   background-color: var(--bg-dark);
-}
-
-.top-nav-desktop__item:hover .top-nav-desktop__sub,
-.top-nav-desktop__item:focus-within .top-nav-desktop__sub,
-.top-nav-desktop__item.is-open .top-nav-desktop__sub {
-  display: flex;
 }

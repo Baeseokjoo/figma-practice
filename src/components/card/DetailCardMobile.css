@@ -23,5 +23,12 @@
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-  gap: var(--spacing-4);
+}
+
+/* 공유 목록 — Figma 프로토타입: '공유하기' 버튼 자리에 오른쪽·위를 맞춰 겹쳐 뜸 (바깥 누르면 닫힘) */
+.detail-card-mobile__share-list {
+  position: absolute;
+  inset-block-start: 0;
+  inset-inline-end: 0;
+  z-index: 5;
 }

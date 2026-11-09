@@ -30,7 +30,12 @@ function DetailPage() {
     <div className="detail-page">
       {/* 모바일 상단바 */}
       <div className="show-mobile">
-        <NavTopPage text="상세페이지" onBack={() => navigate(-1)} />
+        {/* Figma 프로토타입: 뒤로가기 → 검색결과(Mobile-Result)
+            검색결과에서 들어왔으면 그 화면(검색 조건 그대로)으로, 주소로 바로 들어왔으면 /result로 */}
+        <NavTopPage
+          text="상세페이지"
+          onBack={() => (window.history.state?.idx > 0 ? navigate(-1) : navigate('/result'))}
+        />
       </div>
 
       {/* 데스크탑 상단 메뉴바 + Userflow */}

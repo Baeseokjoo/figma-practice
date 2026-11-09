@@ -138,40 +138,32 @@
   inset: 0;
   z-index: 10;
   overflow-y: auto;
-  background-color: var(--bg-base);
+  overflow-x: hidden; /* 메뉴가 밀려 들어올 때 가로 스크롤 방지 */
 }
 
-/* ---------- 전시 정보 창 — 흐린 배경 위 가운데 (Figma: Exhibition-Info 팝업) ---------- */
-.main-page__modal {
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: var(--spacing-16);
-  background-color: var(--bg-blur);
-  -webkit-backdrop-filter: var(--effect-blur);
-  backdrop-filter: var(--effect-blur);
+/* ---------- 전시 정보 창 (Figma 프로토타입: ⓘ 바로 아래·오른쪽 맞춤, 배경 흐림 없음, 0.2초 서서히) ---------- */
+.main-page__display {
+  position: relative;
 }
 
-.main-page__modal-box {
-  display: flex;
-  flex-direction: column;
-  gap: var(--spacing-10);
-  width: 100%;
+.main-page__info {
+  position: absolute;
+  z-index: 5;
+  inset-block-start: calc(var(--spacing-20) + 3.6875rem); /* 구역 위 여백 + ⓘ 버튼 59px */
+  inset-inline-end: var(--spacing-16);
+  width: calc(100% - var(--spacing-16) * 2); /* 320px 화면에서도 넘치지 않게 */
   max-width: 20.5rem; /* Figma 모바일 Exhibition-Info 328px */
-  max-height: 100%;
-  overflow-y: auto;
   padding: var(--spacing-10);
   background-color: var(--bg-base);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-popup);
+  animation: main-page-fade-in 0.2s linear; /* Figma: Dissolve 200ms */
 }
 
-.main-page__modal-close {
-  display: flex;
-  justify-content: flex-end;
+@keyframes main-page-fade-in {
+  from {
+    opacity: 0;
+  }
 }
 
 /* ---------- Desktop (1024px 이상) — Figma Desktop-Main ---------- */
@@ -232,8 +224,9 @@
     align-items: flex-start;
   }
 
-  /* 전시 정보 창 — Figma 데스크탑 Exhibition-Info 600px + 안쪽 여백 40 */
-  .main-page__modal-box {
+  /* 전시 정보 창 — Figma 데스크탑 Exhibition-Info 600px + 안쪽 여백 40, ⓘ 버튼 80px 아래 */
+  .main-page__info {
+    inset-block-start: calc(var(--spacing-20) + 5rem);
     max-width: 42.5rem; /* 680px */
     padding: var(--spacing-20);
   }

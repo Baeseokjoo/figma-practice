@@ -8,6 +8,35 @@
   min-height: 100vh;
   min-height: 100dvh;
   background-color: var(--bg-base); /* Figma: white (변수 미연결) → 같은 값 토큰 */
+  /* Figma 프로토타입: 오른쪽에서 밀려 들어옴 (Move in ←)
+   * 열릴 때: 처음엔 빠르게, 끝에서 천천히 멈춤(ease-out) / 0.5초 */
+  animation: nav-slide-in 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+  will-change: transform;
+}
+
+/* 닫힐 때: 들어온 방향(오른쪽)으로 미끄러져 나감 — 천천히 출발해 빠르게 빠짐(ease-in) / 0.5초 */
+.nav--closing {
+  animation: nav-slide-out 0.5s cubic-bezier(0.64, 0, 0.78, 0) forwards;
+}
+
+@keyframes nav-slide-in {
+  from {
+    transform: translateX(100%);
+  }
+
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes nav-slide-out {
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(100%);
+  }
 }
 
 .nav__top {

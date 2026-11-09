@@ -16,7 +16,10 @@ function MuseumListItem({ number = '01', name = '서울시립미술관 서소문
     <>
       <span className="museum-list-item__name">
         <span>{number}</span>
-        <span>{name}</span>
+        {/* 칸이 좁아 이름이 '…'로 줄면 마우스를 올렸을 때 전체 이름이 보이게 (title) */}
+        <span className="museum-list-item__text" title={name}>
+          {name}
+        </span>
       </span>
       <span className="museum-list-item__icon">
         <img className="museum-list-item__icon-base" src={iconMoreBase} alt="" width="44" height="44" />

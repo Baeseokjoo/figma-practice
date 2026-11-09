@@ -7,14 +7,14 @@
   align-items: center;
   justify-content: center;
   width: 100%;
-  padding: var(--spacing-8);
+  padding: var(--spacing-8); /* Figma: 높이 40px (여백 8 + 글자 줄 24 + 여백 8) */
   font: var(--font-btn-default); /* Figma: BTN/Default */
   color: var(--text-main);
   text-align: center;
   text-decoration: none;
   background-color: var(--bg-base);
-  border: 1px solid var(--border-base);
-  border-radius: var(--radius-lx); /* Figma: 20px (높이 42px라 거의 알약 모양) → 알약 토큰 */
+  border: 0; /* Figma 수정: 테두리 없음 (그림자만으로 입체감) */
+  border-radius: var(--radius-lx); /* Figma: 20px (높이 40px의 절반 = 알약 모양) → 알약 토큰 */
   box-shadow: var(--shadow-base); /* Figma: Base */
 }
 

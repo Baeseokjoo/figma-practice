@@ -2,6 +2,7 @@
 
 /* Base — 하늘색 볼록한 알약 */
 .calendar-btn {
+  transition: background-color 0.2s linear, box-shadow 0.2s linear; /* Figma 프로토타입: 마우스 올림 Smart animate 200ms */
   position: relative;
   display: inline-flex;
   align-items: center;

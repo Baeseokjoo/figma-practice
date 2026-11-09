@@ -52,7 +52,11 @@ function ResultPage() {
     <div className="result-page">
       {/* 모바일 상단바 */}
       <div className="show-mobile">
-        <NavTopPage text="검색결과" onBack={() => navigate(-1)} />
+        {/* Figma 프로토타입: 뒤로가기 → 일정찾기(Mobile-Search) — 고른 조건(미술관·날짜)을 그대로 가지고 감 */}
+        <NavTopPage
+          text="검색결과"
+          onBack={() => navigate(`/search?${new URLSearchParams({ branch, date }).toString()}`)}
+        />
       </div>
 
       {/* 데스크탑 상단 메뉴바 + Userflow */}
@@ -63,7 +67,7 @@ function ResultPage() {
             <li className="result-page__flow-parent">전시해설</li>
             <li aria-hidden="true">&gt;</li>
             <li className="result-page__flow-parent">
-              <a href="/search">일정찾기</a>
+              <a href={`/search?${new URLSearchParams({ branch, date }).toString()}`}>일정찾기</a>
             </li>
             <li aria-hidden="true">&gt;</li>
             <li className="result-page__flow-current" aria-current="page">

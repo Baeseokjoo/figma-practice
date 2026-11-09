@@ -98,6 +98,10 @@
   --text-size-14: var(--primitive-text-size-14);
   --text-size-12: var(--primitive-text-size-12);
 
+  /* 글자 최소 크기 — 화면에 맞춰 글자를 줄일 때 이 값보다 작아지지 않게 (데스크탑에서도 16px 그대로)
+   * 사용: font-size: clamp(var(--text-size-min), …, var(--text-size-16)) */
+  --text-size-min: var(--primitive-text-size-16);
+
   --text-weight-600: var(--primitive-text-weight-600);
   --text-weight-500: var(--primitive-text-weight-500);
   --text-weight-400: var(--primitive-text-weight-400);

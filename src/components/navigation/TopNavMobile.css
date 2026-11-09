@@ -10,8 +10,11 @@
 .top-nav-mobile__title {
   display: flex;
   flex-direction: column;
+  justify-content: center;
   min-width: 0;
+  min-height: var(--touch-min);
   font: var(--font-nav-main); /* Figma: NAV/Main */
+  text-decoration: none; /* 메인으로 가는 링크 — 시안처럼 밑줄 없음 */
 }
 
 .top-nav-mobile__title-ko {

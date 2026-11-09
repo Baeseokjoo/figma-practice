@@ -2,6 +2,7 @@
 
 /* Base — 투명 선을 미리 두어 HOV 때 글자가 밀리지 않게 함 (선 두께 3px: 토큰 없음) */
 .main-menu {
+  transition: border-color 0.1s linear; /* Figma 프로토타입: 마우스 올림 Smart animate 100ms */
   display: flex;
   align-items: center;
   justify-content: center;

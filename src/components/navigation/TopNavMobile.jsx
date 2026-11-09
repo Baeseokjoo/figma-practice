@@ -10,14 +10,15 @@ import './TopNavMobile.css'
  *     false → ☰ 아이콘 / true → X(닫기) 아이콘 (Figma NAV 안에서는 닫기Icon으로 바뀜)
  *     스크린리더에는 '전체 메뉴 열기' / '전체 메뉴 닫기'로 알려줌
  * - buttonRef: 메뉴 버튼에 포커스를 옮길 때 사용 (예: 전체 메뉴가 열리면 X 버튼에 포커스)
+ * - homeHref: 왼쪽 미술관 이름을 눌렀을 때 갈 주소 (기본 '/' 메인 — Figma 프로토타입: MainTitle → Mobile-Main)
  */
-function TopNavMobile({ onMenuClick, menuOpen = false, buttonRef, className = '' }) {
+function TopNavMobile({ onMenuClick, menuOpen = false, buttonRef, homeHref = '/', className = '' }) {
   return (
     <header className={`top-nav-mobile ${className}`.trim()}>
-      <div className="top-nav-mobile__title">
-        <p className="top-nav-mobile__title-ko">서울시립미술관</p>
-        <p className="top-nav-mobile__title-en" lang="en">SEOUL MUSEUM OF ART</p>
-      </div>
+      <a className="top-nav-mobile__title" href={homeHref} aria-label="서울시립미술관 메인으로">
+        <span className="top-nav-mobile__title-ko">서울시립미술관</span>
+        <span className="top-nav-mobile__title-en" lang="en">SEOUL MUSEUM OF ART</span>
+      </a>
       <button
         ref={buttonRef}
         className="top-nav-mobile__menu"

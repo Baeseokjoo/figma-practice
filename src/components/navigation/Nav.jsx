@@ -10,7 +10,7 @@ import './Nav.css'
  * Figma의 변형 01~05는 '어느 메뉴가 펼쳐졌는지'라서, 코드에서는 하나의 컴포넌트로
  * 메뉴 제목을 누르면 그 메뉴만 펼쳐지고 나머지는 접힌다 (한 번에 하나만).
  *
- * - onClose: X 버튼을 누르거나 ESC를 눌렀을 때 실행 (보통 전체 메뉴 닫기)
+ * - onClose: X 버튼을 누르거나 ESC를 눌렀을 때, 오른쪽으로 미끄러져 나가는 움직임(0.5초)이 끝난 뒤 실행 (보통 전체 메뉴 닫기)
  *     닫힌 뒤에는 원래 ☰ 버튼으로 포커스를 돌려주세요 (CLAUDE.md 규칙).
  * - menus: [{ text, href, items: [{ label, href }] }, ...]  (없으면 Figma 시안의 메뉴 5개)
  * - links: 아래쪽 링크 [{ label, href, lang }, ...]  (없으면 로그인 · 검색 · ENG)
@@ -47,27 +47,37 @@ const defaultLinks = [{ label: '로그인' }, { label: '검색' }, { label: 'ENG
 
 function Nav({ onClose, menus = defaultMenus, links = defaultLinks, className = '' }) {
   const [openIndex, setOpenIndex] = useState(null) // 펼쳐진 메뉴 번호 (없으면 null — Figma 01)
+  const [closing, setClosing] = useState(false) // 오른쪽으로 미끄러져 나가는 중
   const closeBtnRef = useRef(null)
 
+  // 닫기: 먼저 오른쪽으로 미끄러져 나가는 움직임을 보여주고, 끝나면 onClose 실행
+  const requestClose = () => setClosing(true)
+  const handleAnimationEnd = (event) => {
+    if (closing && event.target === event.currentTarget) onClose?.()
+  }
+
   // 화면에 나타나면 X 버튼에 포커스
+  // preventScroll: 메뉴가 오른쪽 바깥에서 밀려 들어오는 중이라, 그냥 포커스하면
+  // 브라우저가 버튼을 보여주려고 화면을 옆으로 당겨서 슬라이드가 튀어 보인다
   useEffect(() => {
-    closeBtnRef.current?.focus()
+    closeBtnRef.current?.focus({ preventScroll: true })
   }, [])
 
   const handleKeyDown = (event) => {
-    if (event.key === 'Escape') onClose?.()
+    if (event.key === 'Escape') requestClose()
   }
 
   return (
     <div
-      className={`nav ${className}`.trim()}
+      className={`nav ${closing ? 'nav--closing' : ''} ${className}`.replace(/\s+/g, ' ').trim()}
+      onAnimationEnd={handleAnimationEnd}
       role="dialog"
       aria-modal="true"
       aria-label="전체 메뉴"
       onKeyDown={handleKeyDown}
     >
       <div className="nav__top">
-        <TopNavMobile menuOpen buttonRef={closeBtnRef} onMenuClick={onClose} />
+        <TopNavMobile menuOpen buttonRef={closeBtnRef} onMenuClick={requestClose} />
         <nav aria-label="주 메뉴">
           {menus.map((menu, i) => (
             <Menu

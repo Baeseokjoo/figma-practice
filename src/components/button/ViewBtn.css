@@ -5,6 +5,7 @@
 
 /* Base */
 .view-btn {
+  transition: gap 0.2s linear; /* Figma 프로토타입: 마우스 올림 Smart animate 200ms */
   display: inline-flex;
   align-items: center;
   justify-content: center;

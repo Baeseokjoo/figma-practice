@@ -11,7 +11,6 @@ import FooterText from '../components/text/FooterText.jsx'
 import FooterSubText from '../components/text/FooterSubText.jsx'
 import Card from '../components/card/Card.jsx'
 import CardImage from '../components/card/CardImage.jsx'
-import ResetBtn from '../components/button/ResetBtn.jsx'
 import { navMenus, desktopMenus } from './menu.js'
 import program01 from '../assets/images/program-01.jpg'
 import program02 from '../assets/images/card-sample.jpg'
@@ -25,7 +24,6 @@ import collection from '../assets/images/collection.jpg'
 import logoWaMark from '../assets/images/logo-wa-mark.png'
 import logoBookstore from '../assets/images/logo-seoul-bookstore.png'
 import iconCulture from '../assets/icons/icon-culture.png'
-import iconClose from '../assets/icons/icon-close.png'
 import iconFacebook from '../assets/icons/icon-sns-facebook.png'
 import iconTwitter from '../assets/icons/icon-sns-twitter.png'
 import iconInstagram from '../assets/icons/icon-sns-instagram.png'
@@ -83,21 +81,49 @@ const snsList = [
 function MainPage() {
   const [menuOpen, setMenuOpen] = useState(false)
   const [infoItem, setInfoItem] = useState(null) // ⓘ 버튼으로 연 전시 정보
+  const [infoByHover, setInfoByHover] = useState(false) // 마우스를 올려서 열었는지 (벗어나면 닫힘)
   const menuBtnRef = useRef(null)
-  const infoCloseRef = useRef(null)
+  const displayRef = useRef(null)
 
   const closeMenu = () => {
     setMenuOpen(false)
     menuBtnRef.current?.focus() // 메뉴를 닫으면 ☰ 버튼으로 포커스 복귀
   }
 
-  // 전시 정보 창이 열리면 '닫기' 버튼에 포커스, ESC로 닫기
+  /* 전시 정보 창 (Figma 프로토타입: ⓘ에 마우스를 올리면 ⓘ 바로 아래에 창, 배경 흐림 없음)
+   *   - 마우스 올리기: 열림 → 슬라이드·창 밖으로 나가면 닫힘
+   *   - 누르기: 열린 채로 고정 → 다시 누르기 / 바깥 누르기 / ESC로 닫힘 (ESC는 ⓘ 버튼으로 포커스 복귀) */
+  const openInfoByHover = (item) => {
+    if (infoItem) return
+    setInfoItem(item)
+    setInfoByHover(true)
+  }
+  const toggleInfoByClick = (item) => {
+    if (infoItem && !infoByHover) {
+      setInfoItem(null)
+      return
+    }
+    setInfoItem(item)
+    setInfoByHover(false)
+  }
+
   useEffect(() => {
     if (!infoItem) return undefined
-    infoCloseRef.current?.focus()
-    const onKey = (e) => e.key === 'Escape' && setInfoItem(null)
+    const onKey = (e) => {
+      if (e.key !== 'Escape') return
+      setInfoItem(null)
+      displayRef.current?.querySelector('.display__btn--info')?.focus()
+    }
+    // 창과 ⓘ 버튼 바깥을 누르면 닫힘 (ⓘ 버튼은 자기 onClick에서 처리)
+    const onPointerDown = (e) => {
+      if (!e.target.closest('.main-page__info, .display__btn--info')) setInfoItem(null)
+    }
     window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
+    document.addEventListener('pointerdown', onPointerDown)
+    return () => {
+      window.removeEventListener('keydown', onKey)
+      document.removeEventListener('pointerdown', onPointerDown)
+    }
   }, [infoItem])
 
   return (
@@ -106,8 +132,25 @@ function MainPage() {
       <TopNav menus={desktopMenus} menuOpen={menuOpen} buttonRef={menuBtnRef} onMenuClick={() => setMenuOpen(!menuOpen)} />
 
       <main>
-        <section className="main-page__display" aria-label="주요 전시">
-          <Display onInfoClick={setInfoItem} />
+        <section
+          ref={displayRef}
+          className="main-page__display"
+          aria-label="주요 전시"
+          onMouseLeave={() => infoByHover && setInfoItem(null)}
+        >
+          <Display
+            onInfoClick={toggleInfoByClick}
+            onInfoHover={openInfoByHover}
+            infoOpen={Boolean(infoItem)}
+            paused={Boolean(infoItem)}
+          />
+
+          {/* ---------- 전시 정보 창 (Exhibition-Info) — ⓘ 바로 아래, 오른쪽 맞춤 ---------- */}
+          {infoItem && (
+            <div className="main-page__info" role="dialog" aria-label={`${infoItem.title} 전시 정보`}>
+              <ExhibitionInfo title={infoItem.title} place={infoItem.sub} schedule={infoItem.schedule} />
+            </div>
+          )}
         </section>
 
         {/* ---------- Section-01 미술관 ---------- */}
@@ -208,24 +251,6 @@ function MainPage() {
       {menuOpen && (
         <div className="main-page__overlay">
           <Nav menus={navMenus} onClose={closeMenu} />
-        </div>
-      )}
-
-      {/* ---------- 전시 정보 창 (Exhibition-Info) — 슬라이드의 ⓘ 버튼으로 열림 ---------- */}
-      {infoItem && (
-        <div className="main-page__modal" onClick={() => setInfoItem(null)}>
-          <div
-            className="main-page__modal-box"
-            role="dialog"
-            aria-modal="true"
-            aria-label={`${infoItem.title} 전시 정보`}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <ExhibitionInfo title={infoItem.title} place={infoItem.sub} schedule={infoItem.schedule} />
-            <div className="main-page__modal-close">
-              <ResetBtn ref={infoCloseRef} icon={iconClose} text="닫기" onClick={() => setInfoItem(null)} />
-            </div>
-          </div>
         </div>
       )}
     </div>

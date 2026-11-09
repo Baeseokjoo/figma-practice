@@ -6,24 +6,64 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  padding: var(--spacing-4);
+  padding: 0; /* Figma 여백(Spacing/4)은 아래 이름·화살표 쪽에 나눠 줌 (화면이 좁으면 함께 줄어들도록) */
   font: var(--font-body-main); /* Figma: Body/Main */
   color: var(--text-sub); /* Figma는 --text-third(#A1A1A1)지만 대비 부족 → 프로젝트 규칙에 따라 --text-sub 사용 */
   text-align: start;
   text-decoration: none;
   border-bottom: 1px solid var(--border-base);
+  container-type: inline-size; /* 안쪽 글자·화살표가 이 줄의 너비(cqw)에 맞춰 줄어들게 */
 }
 
+/* ---------- 줄바꿈 없이 항상 한 줄 ----------
+ * 가장 긴 이름('07 서울시립 난지미술창작스튜디오')은 모바일 크기(글자 16px, 화살표 44px, 여백 4px)로
+ * 약 278px이 필요하다. 여유를 둔 300px을 기준으로, 줄이 그보다 좁으면 글자·화살표·간격을 같은 비율로 줄인다.
+ * (예: 글자 16px → 16 ÷ 300 × 100 = 5.333cqw) 시안 값보다 커지지는 않게 막는다.
+ * 글자는 최소 16px(--text-size-min) 아래로 줄이지 않는다 — 그래도 칸이 모자라면 이름 끝을 '…'로 줄임
+ * 줄 높이는 Figma와 같은 1.5배(16→24, 28→42)로 두어 글자와 함께 줄어듦 */
 .museum-list-item__name {
   display: flex;
   align-items: center;
-  gap: var(--spacing-10);
+  gap: min(var(--spacing-10), 3.333cqw);
   min-width: 0;
+  font-size: clamp(var(--text-size-min), 5.333cqw, var(--text-size-16));
+  line-height: 1.5;
+  white-space: nowrap;
+}
+
+/* 번호(01)는 줄이지 않고, 이름만 넘치면 '…'로 줄임 (전체 이름은 스크린리더가 그대로 읽고, 마우스를 올리면 보임) */
+.museum-list-item__name > span:first-child {
+  flex-shrink: 0;
+}
+
+.museum-list-item__text {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Figma 여백 Spacing/4 (모바일 4px / 데스크탑 8px) — 이름은 왼쪽·위아래, 화살표는 오른쪽·위아래 */
+.museum-list-item__name,
+.museum-list-item__icon {
+  padding-block: min(var(--spacing-4), 1.333cqw);
+}
+
+.museum-list-item__name {
+  padding-inline-start: min(var(--spacing-4), 1.333cqw);
+}
+
+.museum-list-item__icon {
+  padding-inline-end: min(var(--spacing-4), 1.333cqw);
 }
 
 .museum-list-item__icon {
   display: flex;
   flex-shrink: 0;
+}
+
+.museum-list-item__icon img {
+  width: min(2.75rem, 14.667cqw); /* 화살표 44px (이미지 크기 — 토큰 없음) */
+  height: auto;
 }
 
 .museum-list-item__icon-click {

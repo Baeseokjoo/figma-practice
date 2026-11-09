@@ -15,7 +15,16 @@
 
 /* 투명 선을 미리 두어 HOV 때 글자가 밀리지 않게 함 (선 두께 3px: 토큰 없음) */
 .sub-menu-desktop__text {
+  transition: border-color 0.2s linear; /* Figma 프로토타입: 마우스 올림 Smart animate 200ms */
   border-bottom: 3px solid transparent;
+}
+
+/* HOV — 글자색은 흰색 그대로 (Figma HOV도 흰 글자)
+ * base.css의 공통 링크 규칙(a:hover → 진한 글자색)이 덮어쓰면 검은 배경에서 글자가 안 보이므로 고정 */
+a.sub-menu-desktop:hover,
+button.sub-menu-desktop:hover,
+.sub-menu-desktop:focus-visible {
+  color: var(--text-inverse);
 }
 
 /* HOV — 글자 아래 흰 선 (마우스 올림 / 키보드 포커스) */
