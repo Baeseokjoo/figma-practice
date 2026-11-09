@@ -1,4 +1,5 @@
 import { useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { Link } from 'react-router-dom'
 import MainMenu from './MainMenu.jsx'
 import SubMenuLink from './SubMenuLink.jsx'
 import SubMenuDesktop from './SubMenuDesktop.jsx'
@@ -87,9 +88,9 @@ function TopNavDesktop({ homeHref = '/', menus = defaultMenus, links = defaultLi
       </ul>
 
       <div className="top-nav-desktop__main" ref={mainRef}>
-        <a className="top-nav-desktop__logo" href={homeHref}>
+        <Link className="top-nav-desktop__logo" to={homeHref}>
           <img src={logo} alt="서울시립미술관 SEOUL MUSEUM OF ART 홈" width="196" height="62" />
-        </a>
+        </Link>
         <nav aria-label="주 메뉴">
           <ul className="top-nav-desktop__menu" role="list">
             {menus.map((menu, i) => {

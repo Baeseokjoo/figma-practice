@@ -1,3 +1,4 @@
+import { Link } from 'react-router-dom'
 import iconMenu from '../../assets/icons/icon-menu.png'
 import iconClose from '../../assets/icons/icon-close.png'
 import './TopNavMobile.css'
@@ -15,10 +16,10 @@ import './TopNavMobile.css'
 function TopNavMobile({ onMenuClick, menuOpen = false, buttonRef, homeHref = '/', className = '' }) {
   return (
     <header className={`top-nav-mobile ${className}`.trim()}>
-      <a className="top-nav-mobile__title" href={homeHref} aria-label="서울시립미술관 메인으로">
+      <Link className="top-nav-mobile__title" to={homeHref} aria-label="서울시립미술관 메인으로">
         <span className="top-nav-mobile__title-ko">서울시립미술관</span>
         <span className="top-nav-mobile__title-en" lang="en">SEOUL MUSEUM OF ART</span>
-      </a>
+      </Link>
       <button
         ref={buttonRef}
         className="top-nav-mobile__menu"

@@ -1,4 +1,4 @@
-import { useNavigate, useSearchParams } from 'react-router-dom'
+import { Link, useNavigate, useSearchParams } from 'react-router-dom'
 import NavTopPage from '../components/navigation/NavTopPage.jsx'
 import TopNav from '../components/sets/TopNav.jsx'
 import Result from '../components/sets/Result.jsx'
@@ -67,7 +67,7 @@ function ResultPage() {
             <li className="result-page__flow-parent">전시해설</li>
             <li aria-hidden="true">&gt;</li>
             <li className="result-page__flow-parent">
-              <a href={`/search?${new URLSearchParams({ branch, date }).toString()}`}>일정찾기</a>
+              <Link to={`/search?${new URLSearchParams({ branch, date }).toString()}`}>일정찾기</Link>
             </li>
             <li aria-hidden="true">&gt;</li>
             <li className="result-page__flow-current" aria-current="page">
