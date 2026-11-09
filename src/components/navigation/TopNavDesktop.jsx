@@ -23,7 +23,7 @@ import './TopNavDesktop.css'
  */
 const defaultMenus = [
   { text: '소개' },
-  { text: '전시·행사·문화' },
+  { text: '전시·행사·교육' },
   { text: '전시해설' },
   { text: '소장품과 미술연구' },
   { text: '방문하기' },
