@@ -75,7 +75,7 @@ function DetailPage() {
 
       {/* 메인화면 버튼 — 모바일 시안에만 있음 */}
       <div className="detail-page__home">
-        <MainpageBtn href="/" />
+        <MainpageBtn />
       </div>
     </div>
   )

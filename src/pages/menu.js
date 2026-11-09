@@ -8,7 +8,7 @@ export const desktopMenus = [
     text: '전시·행사·문화',
     items: [{ text: '전시' }, { text: '문화생활' }, { text: '교육이벤트' }, { text: '서울미디어시티비엔날레' }, { text: '서울사진축제' }],
   },
-  { text: '전시해설', items: [{ text: '일정찾기', href: '/search' }] },
+  { text: '전시해설', items: [{ text: '일정찾기', href: `${import.meta.env.BASE_URL}search` }] },
   {
     text: '소장품과 미술연구',
     items: [{ text: 'SeMA 소장품' }, { text: '미술아카이브' }, { text: "모두의 연구실 '코랄'" }, { text: 'SeMA 도서와 자료' }],
@@ -39,7 +39,7 @@ export const navMenus = [
     text: '전시·행사·교육',
     items: [{ label: '전시' }, { label: '문화생활' }, { label: '교육이벤트' }, { label: '서울미디어시티비엔날레' }, { label: '서울사진축제' }],
   },
-  { text: '전시해설', items: [{ label: '일정찾기', href: '/search' }] },
+  { text: '전시해설', items: [{ label: '일정찾기', href: `${import.meta.env.BASE_URL}search` }] },
   {
     text: '소장품과 미술연구',
     items: [{ label: 'SeMA 소장품' }, { label: '미술아카이브' }, { label: "모두의 연구실 '코랄'" }, { label: 'SeMA 도서와 자료' }],

@@ -22,7 +22,7 @@ const results = [
     time: '오전 11:00',
     place: '1층 전시실',
     sub: '*현장접수 (오전 10시부터 선착순 20명)',
-    href: '/detail',
+    href: `${import.meta.env.BASE_URL}detail`,
     // 데스크탑 시안(Desktop-Resalt)의 문구
     desktop: { time: '오전\n11:00', place: '1층\n전시실', sub: '- 현장접수 (오전 10시부터)\n- 선착순 20명' },
   },
@@ -89,7 +89,7 @@ function ResultPage() {
 
       {/* 메인화면 버튼 — 모바일 시안에만 있음 */}
       <div className="result-page__home">
-        <MainpageBtn href="/" />
+        <MainpageBtn />
       </div>
     </div>
   )
